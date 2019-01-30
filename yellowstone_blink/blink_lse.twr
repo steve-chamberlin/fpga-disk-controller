@@ -1,0 +1,189 @@
+--------------------------------------------------------------------------------
+Lattice Synthesis Timing Report, Version  
+Thu Oct 05 12:19:47 2017
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights reserved.
+
+Report Information
+------------------
+Design:     blink
+Constraint file:  
+Report level:    verbose report, limited to 3 items per constraint
+--------------------------------------------------------------------------------
+
+
+
+================================================================================
+Constraint: create_clock -period 1000.000000 -name clk0 [get_nets clk]
+            241 items scored, 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+
+Passed:  The following path meets requirements by 994.476ns
+
+ Logical Details:  Cell type  Pin type       Cell name  (clock net +/-)
+
+   Source:         FD1S3AX    CK             led_timer_9_10__i0  (from clk +)
+   Destination:    FD1S3AX    D              led_timer_9_10__i19  (to clk +)
+
+   Delay:                   5.364ns  (61.2% logic, 38.8% route), 12 logic levels.
+
+ Constraint Details:
+
+      5.364ns data_path led_timer_9_10__i0 to led_timer_9_10__i19 meets
+    1000.000ns delay constraint less
+      0.160ns L_S requirement (totaling 999.840ns) by 994.476ns
+
+ Path Details: led_timer_9_10__i0 to led_timer_9_10__i19
+
+   Name    Fanout   Delay (ns)          Pins               Resource(Cell.Net)
+L_CO        ---     0.444             CK to Q              led_timer_9_10__i0 (from clk)
+Route         1   e 0.941                                  n21
+A1_TO_FCO   ---     0.827           A[2] to COUT           led_timer_9_10_add_4_1
+Route         1   e 0.020                                  n135
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_3
+Route         1   e 0.020                                  n136
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_5
+Route         1   e 0.020                                  n137
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_7
+Route         1   e 0.020                                  n138
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_9
+Route         1   e 0.020                                  n139
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_11
+Route         1   e 0.020                                  n140
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_13
+Route         1   e 0.020                                  n141
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_15
+Route         1   e 0.020                                  n142
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_17
+Route         1   e 0.020                                  n143
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_19
+Route         1   e 0.020                                  n144
+FCI_TO_F    ---     0.598            CIN to S[2]           led_timer_9_10_add_4_21
+Route         1   e 0.941                                  n91
+                  --------
+                    5.364  (61.2% logic, 38.8% route), 12 logic levels.
+
+
+Passed:  The following path meets requirements by 994.476ns
+
+ Logical Details:  Cell type  Pin type       Cell name  (clock net +/-)
+
+   Source:         FD1S3AX    CK             led_timer_9_10__i0  (from clk +)
+   Destination:    FD1S3AX    D              led_timer_9_10__i20  (to clk +)
+
+   Delay:                   5.364ns  (61.2% logic, 38.8% route), 12 logic levels.
+
+ Constraint Details:
+
+      5.364ns data_path led_timer_9_10__i0 to led_timer_9_10__i20 meets
+    1000.000ns delay constraint less
+      0.160ns L_S requirement (totaling 999.840ns) by 994.476ns
+
+ Path Details: led_timer_9_10__i0 to led_timer_9_10__i20
+
+   Name    Fanout   Delay (ns)          Pins               Resource(Cell.Net)
+L_CO        ---     0.444             CK to Q              led_timer_9_10__i0 (from clk)
+Route         1   e 0.941                                  n21
+A1_TO_FCO   ---     0.827           A[2] to COUT           led_timer_9_10_add_4_1
+Route         1   e 0.020                                  n135
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_3
+Route         1   e 0.020                                  n136
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_5
+Route         1   e 0.020                                  n137
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_7
+Route         1   e 0.020                                  n138
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_9
+Route         1   e 0.020                                  n139
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_11
+Route         1   e 0.020                                  n140
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_13
+Route         1   e 0.020                                  n141
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_15
+Route         1   e 0.020                                  n142
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_17
+Route         1   e 0.020                                  n143
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_19
+Route         1   e 0.020                                  n144
+FCI_TO_F    ---     0.598            CIN to S[2]           led_timer_9_10_add_4_21
+Route         1   e 0.941                                  n90
+                  --------
+                    5.364  (61.2% logic, 38.8% route), 12 logic levels.
+
+
+Passed:  The following path meets requirements by 994.653ns
+
+ Logical Details:  Cell type  Pin type       Cell name  (clock net +/-)
+
+   Source:         FD1S3AX    CK             led_timer_9_10__i0  (from clk +)
+   Destination:    FD1S3AX    D              led_timer_9_10__i17  (to clk +)
+
+   Delay:                   5.187ns  (60.2% logic, 39.8% route), 11 logic levels.
+
+ Constraint Details:
+
+      5.187ns data_path led_timer_9_10__i0 to led_timer_9_10__i17 meets
+    1000.000ns delay constraint less
+      0.160ns L_S requirement (totaling 999.840ns) by 994.653ns
+
+ Path Details: led_timer_9_10__i0 to led_timer_9_10__i17
+
+   Name    Fanout   Delay (ns)          Pins               Resource(Cell.Net)
+L_CO        ---     0.444             CK to Q              led_timer_9_10__i0 (from clk)
+Route         1   e 0.941                                  n21
+A1_TO_FCO   ---     0.827           A[2] to COUT           led_timer_9_10_add_4_1
+Route         1   e 0.020                                  n135
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_3
+Route         1   e 0.020                                  n136
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_5
+Route         1   e 0.020                                  n137
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_7
+Route         1   e 0.020                                  n138
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_9
+Route         1   e 0.020                                  n139
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_11
+Route         1   e 0.020                                  n140
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_13
+Route         1   e 0.020                                  n141
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_15
+Route         1   e 0.020                                  n142
+FCI_TO_FCO  ---     0.157            CIN to COUT           led_timer_9_10_add_4_17
+Route         1   e 0.020                                  n143
+FCI_TO_F    ---     0.598            CIN to S[2]           led_timer_9_10_add_4_19
+Route         1   e 0.941                                  n93
+                  --------
+                    5.187  (60.2% logic, 39.8% route), 11 logic levels.
+
+Report: 5.524 ns is the maximum delay for this constraint.
+
+
+Timing Report Summary
+--------------
+--------------------------------------------------------------------------------
+Constraint                              |   Constraint|       Actual|Levels
+--------------------------------------------------------------------------------
+                                        |             |             |
+create_clock -period 1000.000000 -name  |             |             |
+clk0 [get_nets clk]                     |  1000.000 ns|     5.524 ns|    12  
+                                        |             |             |
+--------------------------------------------------------------------------------
+
+
+All constraints were met.
+
+
+
+Timing summary:
+---------------
+
+Timing errors: 0  Score: 0
+
+Constraints cover  241 paths, 53 nets, and 73 connections (98.6% coverage)
+
+
+Peak memory: 51392512 bytes, TRCE: 1622016 bytes, DLYMAN: 0 bytes
+CPU_TIME_REPORT: 0 secs 

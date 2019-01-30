@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliProject version="3.2" title="liron" device="LCMXO2-1200HC-4TG100C" default_implementation="fpgatop">
+    <Options/>
+    <Implementation title="fpgatop" dir="fpgatop" description="fpgatop" synthesis="lse" default_strategy="Strategy1">
+        <Options def_top="top"/>
+        <Source name="top.v" type="Verilog" type_short="Verilog">
+            <Options top_module="top"/>
+        </Source>
+        <Source name="addrDecoder.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="iwm.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="codeROM.ipx" type="IPX_Module" type_short="IPX">
+            <Options/>
+        </Source>
+        <Source name="fpgatop/fpgatop.xcf" type="Programming Project File" type_short="Programming">
+            <Options/>
+        </Source>
+        <Source name="liron.lpf" type="Logic Preference" type_short="LPF">
+            <Options/>
+        </Source>
+        <Source name="power-estimate.pcf" type="Power Calculator" type_short="PCF" excluded="TRUE">
+            <Options/>
+        </Source>
+    </Implementation>
+    <Strategy name="Strategy1" file="liron1.sty"/>
+</BaliProject>

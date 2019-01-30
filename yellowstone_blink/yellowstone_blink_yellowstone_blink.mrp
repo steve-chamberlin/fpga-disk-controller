@@ -1,0 +1,204 @@
+
+            Lattice Mapping Report File for Design Module 'blink'
+
+
+Design Information
+------------------
+
+Command line:   map -a MachXO2 -p LCMXO2-1200HC -t TQFP100 -s 4 -oc Commercial
+     yellowstone_blink_yellowstone_blink.ngd -o
+     yellowstone_blink_yellowstone_blink_map.ncd -pr
+     yellowstone_blink_yellowstone_blink.prf -mp
+     yellowstone_blink_yellowstone_blink.mrp -lpf C:/Users/chamberlin/Documents/
+     Liron/yellowstone_blink/yellowstone_blink_yellowstone_blink.lpf -lpf
+     C:/Users/chamberlin/Documents/Liron/yellowstone_blink.lpf -c 0 -gui 
+Target Vendor:  LATTICE
+Target Device:  LCMXO2-1200HCTQFP100
+Target Performance:   4
+Mapper:  xo2c00,  version:  Diamond (64-bit) 3.9.0.99.2
+Mapped on:  10/05/17  12:20:37
+
+Design Summary
+--------------
+
+   Number of registers:     21 out of  1520 (1%)
+      PFU registers:           21 out of  1280 (2%)
+      PIO registers:            0 out of   240 (0%)
+   Number of SLICEs:        12 out of   640 (2%)
+      SLICEs as Logic/ROM:     12 out of   640 (2%)
+      SLICEs as RAM:            0 out of   480 (0%)
+      SLICEs as Carry:         11 out of   640 (2%)
+   Number of LUT4s:         23 out of  1280 (2%)
+      Number used as logic LUTs:          1
+      Number used as distributed RAM:     0
+      Number used as ripple logic:       22
+      Number used as shift registers:     0
+   Number of PIO sites used: 2 + 4(JTAG) out of 80 (8%)
+   Number of block RAMs:  0 out of 7 (0%)
+   Number of GSRs:  0 out of 1 (0%)
+   EFB used :       No
+   JTAG used :      No
+   Readback used :  No
+   Oscillator used :  Yes
+   Startup used :   No
+   POR :            On
+   Bandgap :        On
+   Number of Power Controller:  0 out of 1 (0%)
+   Number of Dynamic Bank Controller (BCINRD):  0 out of 4 (0%)
+   Number of Dynamic Bank Controller (BCLVDSO):  0 out of 1 (0%)
+   Number of DCCA:  0 out of 8 (0%)
+   Number of DCMA:  0 out of 2 (0%)
+   Number of PLLs:  0 out of 1 (0%)
+   Number of DQSDLLs:  0 out of 2 (0%)
+   Number of CLKDIVC:  0 out of 4 (0%)
+   Number of ECLKSYNCA:  0 out of 4 (0%)
+   Number of ECLKBRIDGECS:  0 out of 2 (0%)
+   Notes:-
+      1. Total number of LUT4s = (Number of logic LUT4s) + 2*(Number of
+     distributed RAMs) + 2*(Number of ripple logic)
+      2. Number of logic LUT4s does not include count of distributed RAM and
+     ripple logic.
+   Number of clocks:  1
+     Net clk: 11 loads, 11 rising, 0 falling (Driver: internal_oscillator_inst )
+
+                                    Page 1
+
+
+
+
+Design:  blink                                         Date:  10/05/17  12:20:37
+
+Design Summary (cont)
+---------------------
+     
+   Number of Clock Enables:  0
+   Number of LSRs:  0
+   Number of nets driven by tri-state buffers:  0
+   Top 10 highest fanout non-clock nets:
+     Net pin_led_c_20: 2 loads
+     Net n143: 1 loads
+     Net n144: 1 loads
+     Net n2: 1 loads
+     Net n3: 1 loads
+     Net n4: 1 loads
+     Net n90: 1 loads
+     Net n91: 1 loads
+     Net n93: 1 loads
+     Net VCC_net: 1 loads
+
+
+
+
+   Number of warnings:  0
+   Number of errors:    0
+     
+
+Design Errors/Warnings
+----------------------
+
+   No errors or warnings present.
+
+IO (PIO) Attributes
+-------------------
+
++---------------------+-----------+-----------+------------+
+| IO Name             | Direction | Levelmode | IO         |
+|                     |           |  IO_TYPE  | Register   |
++---------------------+-----------+-----------+------------+
+| pin_led             | OUTPUT    | LVTTL33   |            |
++---------------------+-----------+-----------+------------+
+| en_245              | OUTPUT    | LVTTL33   |            |
++---------------------+-----------+-----------+------------+
+
+Removed logic
+-------------
+
+Block GSR_INST undriven or does not drive anything - clipped.
+Signal GND_net undriven or does not drive anything - clipped.
+Signal led_timer_9_10_add_4_1/S0 undriven or does not drive anything - clipped.
+Signal led_timer_9_10_add_4_1/CI undriven or does not drive anything - clipped.
+Signal led_timer_9_10_add_4_21/CO undriven or does not drive anything - clipped.
+     
+Block i1 was optimized away.
+
+Memory Usage
+------------
+
+
+     
+
+                                    Page 2
+
+
+
+
+Design:  blink                                         Date:  10/05/17  12:20:37
+
+
+OSC Summary
+-----------
+
+OSC 1:                                     Pin/Node Value
+  OSC Instance Name:                                internal_oscillator_inst
+  OSC Type:                                         OSCH
+  STDBY Input:                                      NONE
+  OSC Output:                              NODE     clk
+  OSC Nominal Frequency (MHz):                      2.08
+
+ASIC Components
+---------------
+
+Instance Name: internal_oscillator_inst
+         Type: OSCH
+
+Run Time and Memory Usage
+-------------------------
+
+   Total CPU Time: 0 secs  
+   Total REAL Time: 0 secs  
+   Peak Memory Usage: 36 MB
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    Page 3
+
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+     Copyright (c) 1995 AT&T Corp.   All rights reserved.
+     Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+     Copyright (c) 2001 Agere Systems   All rights reserved.
+     Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights
+     reserved.

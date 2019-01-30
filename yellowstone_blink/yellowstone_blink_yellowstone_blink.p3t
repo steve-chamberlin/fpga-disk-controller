@@ -1,0 +1,5 @@
+-rem
+-distrce
+-log "yellowstone_blink_yellowstone_blink.log"
+-o "yellowstone_blink_yellowstone_blink.csv"
+-pr "yellowstone_blink_yellowstone_blink.prf"

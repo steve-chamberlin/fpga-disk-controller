@@ -1,0 +1,5 @@
+#Start recording tcl command: 1/17/2018 14:08:10
+#Project Location: C:/Users/chamberlin/Documents/Liron/lattice; Project name: liron
+prj_project open "C:/Users/chamberlin/Documents/Liron/lattice/liron.ldf"
+prj_project close
+#Stop recording: 1/17/2018 14:08:35

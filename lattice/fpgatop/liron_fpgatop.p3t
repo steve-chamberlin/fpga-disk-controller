@@ -1,0 +1,5 @@
+-rem
+-distrce
+-log "liron_fpgatop.log"
+-o "liron_fpgatop.csv"
+-pr "liron_fpgatop.prf"

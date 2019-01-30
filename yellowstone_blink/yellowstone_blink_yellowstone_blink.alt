@@ -1,0 +1,10 @@
+NOTE Copyright (C), 1992-2010, Lattice Semiconductor Corporation *
+NOTE All Rights Reserved *
+NOTE DATE CREATED: Thu Oct 05 15:40:34 2017 *
+NOTE DESIGN NAME: blink *
+NOTE DEVICE NAME: LCMXO2-1200HC-4TQFP100 *
+NOTE PIN ASSIGNMENTS *
+NOTE PINS pin_led : 25 : out *
+NOTE PINS en_245 : 30 : out *
+NOTE CONFIGURATION MODE: NONE *
+NOTE COMPRESSION: on *

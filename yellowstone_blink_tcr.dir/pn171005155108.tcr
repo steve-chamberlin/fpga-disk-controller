@@ -1,0 +1,35 @@
+#Start recording tcl command: 10/5/2017 15:05:29
+#Project Location: C:/Users/chamberlin/Documents/Liron; Project name: yellowstone_blink
+prj_project open "C:/Users/chamberlin/Documents/Liron/yellowstone_blink.ldf"
+pgr_project close
+pgr_project open "C:/Users/chamberlin/Documents/Liron/yellowstone_blink/yellowstone_blink.xcf"
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+prj_run Export -impl yellowstone_blink -task Bitgen -forceOne
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_project save "C:/Users/chamberlin/Documents/Liron/yellowstone_blink/yellowstone_blink.xcf"
+prj_project close
+#Stop recording: 10/5/2017 15:51:08

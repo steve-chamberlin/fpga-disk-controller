@@ -1,0 +1,468 @@
+
+             Lattice Mapping Report File for Design Module 'top'
+
+
+Design Information
+------------------
+
+Command line:   map -a MachXO2 -p LCMXO2-1200HC -t TQFP100 -s 4 -oc Commercial
+     liron_fpgatop.ngd -o liron_fpgatop_map.ncd -pr liron_fpgatop.prf -mp
+     liron_fpgatop.mrp -lpf
+     C:/Users/chamberlin/Documents/Liron/lattice/fpgatop/liron_fpgatop.lpf -lpf
+     C:/Users/chamberlin/Documents/Liron/lattice/liron.lpf -c 0 -gui -msgset
+     C:/Users/chamberlin/Documents/Liron/lattice/promote.xml 
+Target Vendor:  LATTICE
+Target Device:  LCMXO2-1200HCTQFP100
+Target Performance:   4
+Mapper:  xo2c00,  version:  Diamond (64-bit) 3.9.0.99.2
+Mapped on:  02/22/18  10:56:38
+
+Design Summary
+--------------
+
+   Number of registers:     43 out of  1520 (3%)
+      PFU registers:           43 out of  1280 (3%)
+      PIO registers:            0 out of   240 (0%)
+   Number of SLICEs:        58 out of   640 (9%)
+      SLICEs as Logic/ROM:     58 out of   640 (9%)
+      SLICEs as RAM:            0 out of   480 (0%)
+      SLICEs as Carry:          0 out of   640 (0%)
+   Number of LUT4s:        113 out of  1280 (9%)
+      Number used as logic LUTs:        113
+      Number used as distributed RAM:     0
+      Number used as ripple logic:        0
+      Number used as shift registers:     0
+   Number of PIO sites used: 52 + 4(JTAG) out of 80 (70%)
+   Number of block RAMs:  4 out of 7 (57%)
+   Number of GSRs:  1 out of 1 (100%)
+   EFB used :       No
+   JTAG used :      No
+   Readback used :  No
+   Oscillator used :  No
+   Startup used :   No
+   POR :            On
+   Bandgap :        On
+   Number of Power Controller:  0 out of 1 (0%)
+   Number of Dynamic Bank Controller (BCINRD):  0 out of 4 (0%)
+   Number of Dynamic Bank Controller (BCLVDSO):  0 out of 1 (0%)
+   Number of DCCA:  0 out of 8 (0%)
+   Number of DCMA:  0 out of 2 (0%)
+   Number of PLLs:  0 out of 1 (0%)
+   Number of DQSDLLs:  0 out of 2 (0%)
+   Number of CLKDIVC:  0 out of 4 (0%)
+   Number of ECLKSYNCA:  0 out of 4 (0%)
+   Number of ECLKBRIDGECS:  0 out of 2 (0%)
+   Notes:-
+      1. Total number of LUT4s = (Number of logic LUT4s) + 2*(Number of
+     distributed RAMs) + 2*(Number of ripple logic)
+      2. Number of logic LUT4s does not include count of distributed RAM and
+     ripple logic.
+   Number of clocks:  2
+     Net fclk_c: 27 loads, 27 rising, 0 falling (Driver: PIO fclk )
+     Net _devsel_c: 8 loads, 0 rising, 8 falling (Driver: PIO _devsel )
+
+                                    Page 1
+
+
+
+
+Design:  top                                           Date:  02/22/18  10:56:38
+
+Design Summary (cont)
+---------------------
+   Number of Clock Enables:  17
+     Net q7: 1 loads, 1 LSLICEs
+     Net myIwm/_devsel_N_40_enable_1: 1 loads, 1 LSLICEs
+     Net myIwm/_devsel_N_40_enable_2: 1 loads, 1 LSLICEs
+     Net myIwm/fclk_c_enable_14: 5 loads, 5 LSLICEs
+     Net myIwm/fclk_c_enable_4: 1 loads, 1 LSLICEs
+     Net myIwm/fclk_c_enable_16: 2 loads, 2 LSLICEs
+     Net myIwm/fclk_c_enable_20: 3 loads, 3 LSLICEs
+     Net myIwm/fclk_c_enable_26: 4 loads, 4 LSLICEs
+     Net myIwm/_devsel_N_40_enable_3: 1 loads, 1 LSLICEs
+     Net myIwm/fclk_c_enable_30: 3 loads, 3 LSLICEs
+     Net myIwm/_devsel_N_40_enable_4: 1 loads, 1 LSLICEs
+     Net myIwm/_devsel_N_40_enable_7: 1 loads, 1 LSLICEs
+     Net myIwm/_devsel_N_40_enable_8: 1 loads, 1 LSLICEs
+     Net myIwm/fclk_c_enable_27: 1 loads, 1 LSLICEs
+     Net myIwm/_devsel_N_40_enable_5: 1 loads, 1 LSLICEs
+     Net myIwm/_devsel_N_40_enable_6: 1 loads, 1 LSLICEs
+     Net n438_c: 1 loads, 1 LSLICEs
+   Number of LSRs:  4
+     Net q7: 1 loads, 1 LSLICEs
+     Net myIwm/n302: 3 loads, 3 LSLICEs
+     Net histrobe: 1 loads, 1 LSLICEs
+     Net myIwm/n648: 2 loads, 2 LSLICEs
+   Number of nets driven by tri-state buffers:  0
+   Top 10 highest fanout non-clock nets:
+     Net q7: 22 loads
+     Net addr_c_0: 17 loads
+     Net addr_c_1: 13 loads
+     Net addr_c_2: 13 loads
+     Net addr_c_3: 13 loads
+     Net q6: 13 loads
+     Net writeBufferEmpty: 12 loads
+     Net myIwm/n142: 11 loads
+     Net myIwm/n1871: 11 loads
+     Net myIwm/bitTimer_3: 10 loads
+
+
+
+
+   Number of warnings:  0
+   Number of errors:    0
+     
+
+Design Errors/Warnings
+----------------------
+
+   No errors or warnings present.
+
+IO (PIO) Attributes
+-------------------
+
++---------------------+-----------+-----------+------------+
+| IO Name             | Direction | Levelmode | IO         |
+|                     |           |  IO_TYPE  | Register   |
++---------------------+-----------+-----------+------------+
+| data[7]             | BIDIR     | LVCMOS33  |            |
+
+                                    Page 2
+
+
+
+
+Design:  top                                           Date:  02/22/18  10:56:38
+
+IO (PIO) Attributes (cont)
+--------------------------
++---------------------+-----------+-----------+------------+
+| data[6]             | BIDIR     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| data[5]             | BIDIR     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| data[4]             | BIDIR     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| data[3]             | BIDIR     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| data[2]             | BIDIR     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| data[1]             | BIDIR     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| data[0]             | BIDIR     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| wrdata              | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| phase[3]            | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| phase[2]            | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| phase[1]            | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| phase[0]            | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| _wrreq              | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| _enbl1              | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| _enbl2              | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| select              | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| _en35               | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| spi_clk             | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| spi_mosi            | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| spi_cs              | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| _en245              | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| debugInfo[7]        | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| debugInfo[6]        | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| debugInfo[5]        | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| debugInfo[4]        | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| debugInfo[3]        | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| debugInfo[2]        | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| debugInfo[1]        | OUTPUT    | LVCMOS33  |            |
+
+                                    Page 3
+
+
+
+
+Design:  top                                           Date:  02/22/18  10:56:38
+
+IO (PIO) Attributes (cont)
+--------------------------
++---------------------+-----------+-----------+------------+
+| debugInfo[0]        | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| addr[11]            | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| addr[10]            | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| addr[9]             | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| addr[8]             | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| addr[7]             | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| addr[6]             | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| addr[5]             | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| addr[4]             | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| addr[3]             | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| addr[2]             | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| addr[1]             | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| addr[0]             | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| fclk                | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| q3                  | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| rw                  | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| _iostrobe           | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| _iosel              | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| _devsel             | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| _reset              | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| sense               | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| rddata              | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| spi_miso            | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+
+Removed logic
+-------------
+
+Signal _devsel_N_40 was merged into signal _devsel_c
+Signal myAddrDecoder/_iosel_N_24 was merged into signal n438_c
+Signal myIwm/n1873 was merged into signal q7
+Signal VCC_net undriven or does not drive anything - clipped.
+Signal n1904 undriven or does not drive anything - clipped.
+
+                                    Page 4
+
+
+
+
+Design:  top                                           Date:  02/22/18  10:56:38
+
+Removed logic (cont)
+--------------------
+Block i1779 was optimized away.
+Block myAddrDecoder/_iosel_I_0_1_lut was optimized away.
+Block myIwm/i673_1_lut_rep_31 was optimized away.
+Block i2 was optimized away.
+Block m0_lut was optimized away.
+
+Memory Usage
+------------
+
+    
+         
+    INFO: Design contains EBR with GSR enabled. The GSR is only applicable for
+         output registers except FIFO. 
+    /myROM:
+    EBRs: 4
+    RAM SLICEs: 0
+    Logic SLICEs: 0
+    PFU Registers: 0
+    -Contains EBR codeROM_0_0_3_0:  TYPE= DP8KC,  Width_A= 2,  Depth_A= 4096,
+         REGMODE_A= OUTREG,  REGMODE_B= NOREG,  RESETMODE= SYNC,
+         ASYNC_RESET_RELEASE= SYNC,  WRITEMODE_A= NORMAL,  WRITEMODE_B= NORMAL,
+         GSR= ENABLED,  MEM_INIT_FILE= rom-full-4k.mem,  MEM_LPC_FILE=
+         codeROM.lpc
+    -Contains EBR codeROM_0_0_1_2:  TYPE= DP8KC,  Width_A= 2,  Depth_A= 4096,
+         REGMODE_A= OUTREG,  REGMODE_B= NOREG,  RESETMODE= SYNC,
+         ASYNC_RESET_RELEASE= SYNC,  WRITEMODE_A= NORMAL,  WRITEMODE_B= NORMAL,
+         GSR= ENABLED,  MEM_INIT_FILE= rom-full-4k.mem,  MEM_LPC_FILE=
+         codeROM.lpc
+    -Contains EBR codeROM_0_0_0_3:  TYPE= DP8KC,  Width_A= 2,  Depth_A= 4096,
+         REGMODE_A= OUTREG,  REGMODE_B= NOREG,  RESETMODE= SYNC,
+         ASYNC_RESET_RELEASE= SYNC,  WRITEMODE_A= NORMAL,  WRITEMODE_B= NORMAL,
+         GSR= ENABLED,  MEM_INIT_FILE= rom-full-4k.mem,  MEM_LPC_FILE=
+         codeROM.lpc
+    -Contains EBR codeROM_0_0_2_1:  TYPE= DP8KC,  Width_A= 2,  Depth_A= 4096,
+         REGMODE_A= OUTREG,  REGMODE_B= NOREG,  RESETMODE= SYNC,
+         ASYNC_RESET_RELEASE= SYNC,  WRITEMODE_A= NORMAL,  WRITEMODE_B= NORMAL,
+         GSR= ENABLED,  MEM_INIT_FILE= rom-full-4k.mem,  MEM_LPC_FILE=
+         codeROM.lpc
+
+     
+
+ASIC Components
+---------------
+
+Instance Name: myROM/codeROM_0_0_3_0
+         Type: DP8KC
+Instance Name: myROM/codeROM_0_0_1_2
+         Type: DP8KC
+Instance Name: myROM/codeROM_0_0_0_3
+         Type: DP8KC
+Instance Name: myROM/codeROM_0_0_2_1
+         Type: DP8KC
+
+
+
+
+
+                                    Page 5
+
+
+
+
+Design:  top                                           Date:  02/22/18  10:56:38
+
+GSR Usage
+---------
+
+GSR Component:
+   The Global Set Reset (GSR) resource has been used to implement a global reset
+        of the design. The reset signal used for GSR control is 'n440_c'.
+        
+
+     GSR Property:
+   The design components with GSR property set to ENABLED will respond to global
+        set reset while the components with GSR property set to DISABLED will
+        not.
+        
+
+     Components with disabled GSR Property
+-------------------------------------
+
+     These components have the GSR property set to DISABLED. The components will
+     not respond to the reset signal 'n440_c' via the GSR component.
+
+     Type and number of components of the type: 
+   Register = 17 
+
+     Type and instance name of component: 
+   Register : myIwm/rddataSync_i0
+   Register : myIwm/shifter_i0_i0
+   Register : myIwm/bitTimer__i0
+   Register : myIwm/rddataSync_i1
+   Register : myIwm/shifter_i0_i1
+   Register : myIwm/shifter_i0_i2
+   Register : myIwm/shifter_i0_i3
+   Register : myIwm/shifter_i0_i4
+   Register : myIwm/shifter_i0_i5
+   Register : myIwm/shifter_i0_i6
+   Register : myIwm/shifter_i0_i7
+   Register : myIwm/bitTimer__i1
+   Register : myIwm/bitTimer__i2
+   Register : myIwm/bitTimer__i3
+   Register : myIwm/bitTimer__i4
+   Register : myIwm/bitTimer__i5
+   Register : myAddrDecoder/romExpansionActive_16
+
+     Components with synchronous local reset also reset by asynchronous GSR
+----------------------------------------------------------------------
+
+     These components have the GSR property set to ENABLED and the local reset
+     is synchronous. The components will respond to the synchronous local reset
+     and to the unrelated asynchronous reset signal 'n440_c' via the GSR
+     component.
+
+     Type and number of components of the type: 
+   Register = 4 
+   DP8KC = 4
+
+     Type and instance name of component: 
+   Register : myIwm/_underrun_125
+   Register : myIwm/clearBufferTimer_i0_i3
+   Register : myIwm/clearBufferTimer_i0_i2
+
+                                    Page 6
+
+
+
+
+Design:  top                                           Date:  02/22/18  10:56:38
+
+GSR Usage (cont)
+----------------
+   Register : myIwm/clearBufferTimer_i0_i1
+   DP8KC : myROM/codeROM_0_0_3_0
+   DP8KC : myROM/codeROM_0_0_1_2
+   DP8KC : myROM/codeROM_0_0_0_3
+   DP8KC : myROM/codeROM_0_0_2_1
+
+     EBR components with enabled GSR
+-------------------------------
+
+     These EBR components have the GSR property set to ENABLED. The components
+     will respond to the asynchronous reset signal 'n440_c' via the GSR
+     component.
+
+     Type and number of components of the type: 
+   DP8KC = 4
+
+     Type and instance name of component: 
+   DP8KC : myROM/codeROM_0_0_3_0
+   DP8KC : myROM/codeROM_0_0_1_2
+   DP8KC : myROM/codeROM_0_0_0_3
+   DP8KC : myROM/codeROM_0_0_2_1
+
+Run Time and Memory Usage
+-------------------------
+
+   Total CPU Time: 0 secs  
+   Total REAL Time: 0 secs  
+   Peak Memory Usage: 38 MB
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    Page 7
+
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+     Copyright (c) 1995 AT&T Corp.   All rights reserved.
+     Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+     Copyright (c) 2001 Agere Systems   All rights reserved.
+     Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights
+     reserved.

@@ -1,0 +1,158 @@
+--------------------------------------------------------------------------------
+Lattice Synthesis Timing Report, Version  
+Thu Feb 22 10:56:37 2018
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights reserved.
+
+Report Information
+------------------
+Design:     top
+Constraint file:  
+Report level:    verbose report, limited to 3 items per constraint
+--------------------------------------------------------------------------------
+
+
+
+================================================================================
+Constraint: create_clock -period 1000.000000 -name clk1 [get_nets _devsel_c]
+            0 items scored, 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+
+================================================================================
+Constraint: create_clock -period 1000.000000 -name clk0 [get_nets fclk_c]
+            702 items scored, 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+
+Passed:  The following path meets requirements by 989.989ns
+
+ Logical Details:  Cell type  Pin type       Cell name  (clock net +/-)
+
+   Source:         FD1P3IX    CK             \myIwm/bitTimer__i1  (from fclk_c +)
+   Destination:    FD1P3AX    SP             \myIwm/shifter_i0_i0  (to fclk_c +)
+
+   Delay:                   9.726ns  (24.8% logic, 75.2% route), 5 logic levels.
+
+ Constraint Details:
+
+      9.726ns data_path \myIwm/bitTimer__i1 to \myIwm/shifter_i0_i0 meets
+    1000.000ns delay constraint less
+      0.285ns LCE_S requirement (totaling 999.715ns) by 989.989ns
+
+ Path Details: \myIwm/bitTimer__i1 to \myIwm/shifter_i0_i0
+
+   Name    Fanout   Delay (ns)          Pins               Resource(Cell.Net)
+L_CO        ---     0.444             CK to Q              \myIwm/bitTimer__i1 (from fclk_c)
+Route         9   e 1.632                                  \myIwm/bitTimer[1]
+LUT4        ---     0.493              D to Z              \myIwm/i4_4_lut
+Route         3   e 1.258                                  \myIwm/n10
+LUT4        ---     0.493              B to Z              \myIwm/i5_3_lut_rep_20
+Route         4   e 1.340                                  \myIwm/n1862
+LUT4        ---     0.493              B to Z              \myIwm/i145_3_lut_4_lut
+Route         8   e 1.540                                  \myIwm/n163
+LUT4        ---     0.493              B to Z              \myIwm/i1_4_lut_adj_28
+Route         8   e 1.540                                  \myIwm/fclk_c_enable_14
+                  --------
+                    9.726  (24.8% logic, 75.2% route), 5 logic levels.
+
+
+Passed:  The following path meets requirements by 989.989ns
+
+ Logical Details:  Cell type  Pin type       Cell name  (clock net +/-)
+
+   Source:         FD1P3IX    CK             \myIwm/bitTimer__i1  (from fclk_c +)
+   Destination:    FD1P3AX    SP             \myIwm/shifter_i0_i1  (to fclk_c +)
+
+   Delay:                   9.726ns  (24.8% logic, 75.2% route), 5 logic levels.
+
+ Constraint Details:
+
+      9.726ns data_path \myIwm/bitTimer__i1 to \myIwm/shifter_i0_i1 meets
+    1000.000ns delay constraint less
+      0.285ns LCE_S requirement (totaling 999.715ns) by 989.989ns
+
+ Path Details: \myIwm/bitTimer__i1 to \myIwm/shifter_i0_i1
+
+   Name    Fanout   Delay (ns)          Pins               Resource(Cell.Net)
+L_CO        ---     0.444             CK to Q              \myIwm/bitTimer__i1 (from fclk_c)
+Route         9   e 1.632                                  \myIwm/bitTimer[1]
+LUT4        ---     0.493              D to Z              \myIwm/i4_4_lut
+Route         3   e 1.258                                  \myIwm/n10
+LUT4        ---     0.493              B to Z              \myIwm/i5_3_lut_rep_20
+Route         4   e 1.340                                  \myIwm/n1862
+LUT4        ---     0.493              B to Z              \myIwm/i145_3_lut_4_lut
+Route         8   e 1.540                                  \myIwm/n163
+LUT4        ---     0.493              B to Z              \myIwm/i1_4_lut_adj_28
+Route         8   e 1.540                                  \myIwm/fclk_c_enable_14
+                  --------
+                    9.726  (24.8% logic, 75.2% route), 5 logic levels.
+
+
+Passed:  The following path meets requirements by 989.989ns
+
+ Logical Details:  Cell type  Pin type       Cell name  (clock net +/-)
+
+   Source:         FD1P3IX    CK             \myIwm/bitTimer__i1  (from fclk_c +)
+   Destination:    FD1P3AX    SP             \myIwm/shifter_i0_i2  (to fclk_c +)
+
+   Delay:                   9.726ns  (24.8% logic, 75.2% route), 5 logic levels.
+
+ Constraint Details:
+
+      9.726ns data_path \myIwm/bitTimer__i1 to \myIwm/shifter_i0_i2 meets
+    1000.000ns delay constraint less
+      0.285ns LCE_S requirement (totaling 999.715ns) by 989.989ns
+
+ Path Details: \myIwm/bitTimer__i1 to \myIwm/shifter_i0_i2
+
+   Name    Fanout   Delay (ns)          Pins               Resource(Cell.Net)
+L_CO        ---     0.444             CK to Q              \myIwm/bitTimer__i1 (from fclk_c)
+Route         9   e 1.632                                  \myIwm/bitTimer[1]
+LUT4        ---     0.493              D to Z              \myIwm/i4_4_lut
+Route         3   e 1.258                                  \myIwm/n10
+LUT4        ---     0.493              B to Z              \myIwm/i5_3_lut_rep_20
+Route         4   e 1.340                                  \myIwm/n1862
+LUT4        ---     0.493              B to Z              \myIwm/i145_3_lut_4_lut
+Route         8   e 1.540                                  \myIwm/n163
+LUT4        ---     0.493              B to Z              \myIwm/i1_4_lut_adj_28
+Route         8   e 1.540                                  \myIwm/fclk_c_enable_14
+                  --------
+                    9.726  (24.8% logic, 75.2% route), 5 logic levels.
+
+Report: 10.011 ns is the maximum delay for this constraint.
+
+
+Timing Report Summary
+--------------
+--------------------------------------------------------------------------------
+Constraint                              |   Constraint|       Actual|Levels
+--------------------------------------------------------------------------------
+                                        |             |             |
+create_clock -period 1000.000000 -name  |             |             |
+clk1 [get_nets _devsel_c]               |            -|            -|     0  
+                                        |             |             |
+create_clock -period 1000.000000 -name  |             |             |
+clk0 [get_nets fclk_c]                  |  1000.000 ns|    10.011 ns|     5  
+                                        |             |             |
+--------------------------------------------------------------------------------
+
+
+All constraints were met.
+
+
+
+Timing summary:
+---------------
+
+Timing errors: 0  Score: 0
+
+Constraints cover  702 paths, 106 nets, and 328 connections (53.9% coverage)
+
+
+Peak memory: 55623680 bytes, TRCE: 2555904 bytes, DLYMAN: 163840 bytes
+CPU_TIME_REPORT: 0 secs 

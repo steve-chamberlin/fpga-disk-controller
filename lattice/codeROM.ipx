@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DiamondModule name="codeROM" module="codeROM" VendorName="Lattice Semiconductor Corporation" generator="IPexpress" date="2018 01 30 17:35:17.438" version="5.4" type="Module" synthesis="lse" source_format="Verilog HDL">
+  <Package>
+		<File name="" type="" modified="2018 01 30 17:35:17.297"/>
+		<File name="c:/users/chamberlin/documents/liron/rom-full-4k.mem" type="mem" modified="2018 01 30 17:34:47.640"/>
+		<File name="codeROM.lpc" type="lpc" modified="2018 01 30 17:35:12.008"/>
+		<File name="codeROM.v" type="top_level_verilog" modified="2018 01 30 17:35:12.086"/>
+		<File name="codeROM_tmpl.v" type="template_verilog" modified="2018 01 30 17:35:12.086"/>
+		<File name="tb_codeROM_tmpl.v" type="testbench_verilog" modified="2018 01 30 17:35:12.102"/>
+  </Package>
+</DiamondModule>

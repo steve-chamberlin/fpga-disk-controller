@@ -1,0 +1,40 @@
+#Start recording tcl command: 7/25/2017 21:29:37
+#Project Location: C:/Users/chamberlin/Documents/Liron/lattice; Project name: liron
+prj_project new -name "liron" -impl "fpgatop" -dev LAMXO256C-3TN100E -synthesis "lse"
+prj_project save
+prj_src add "C:/Users/chamberlin/Documents/Liron/lattice/top.v"
+prj_src add "C:/Users/chamberlin/Documents/Liron/lattice/addrDecoder.v"
+prj_src add "C:/Users/chamberlin/Documents/Liron/lattice/iwm.v"
+prj_run Synthesis -impl fpgatop
+prj_run Map -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop -task PARTrace
+prj_dev set -part LCMXO2-640HC-4TG100C
+prj_run PAR -impl fpgatop
+prj_dev set -part LAMXO256C-3TN100E
+prj_run PAR -impl fpgatop
+prj_dev set -part LCMXO2-640HC-4SG48C
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_dev set -part LCMXO2-640HC-4TG100C
+prj_src add -exclude "C:/Users/chamberlin/Documents/Liron/lattice/fpgatop/fpgatop.xcf"
+prj_src enable "C:/Users/chamberlin/Documents/Liron/lattice/fpgatop/fpgatop.xcf"
+pgr_project close
+prj_src add "C:/Users/chamberlin/Documents/Liron/lattice/codeROM.v"
+prj_run PAR -impl fpgatop
+prj_src add "C:/Users/chamberlin/Documents/Liron/lattice/codeROM.ipx"
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_src remove "C:/Users/chamberlin/Documents/Liron/lattice/codeROM.v"
+prj_run PAR -impl fpgatop
+prj_src add "C:/Users/chamberlin/Documents/Liron/lattice/spiFlash.ipx"
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_src remove "C:/Users/chamberlin/Documents/Liron/lattice/spiFlash.ipx"
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+#Stop recording: 7/27/2017 13:01:34

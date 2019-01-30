@@ -1,0 +1,470 @@
+[[Info]]
+_PARENT: none
+_FAMILY: xo2c00
+_FILE_FORMAT: 1.00
+_DATA_VALUES: 1.00
+_STATUS: Advanced
+
+[[Project]]
+DesignName: top
+Family: MachXO2
+Device: LCMXO2-640HC
+Package: TQFP100
+Operating: Commercial
+Version: 8.0
+Performance: -4
+PartName: LCMXO2-640HC-4TG100C
+
+[[Settings]]
+EstimationMode: Medium
+ProcessType: Typical
+SoftwareMode: Calculation
+TempAmbX: Ambient Temperature
+SectionY: Total Power
+SectionX: Vcc
+SectionLowerLimit: 0.0000
+SectionUpperLimit: 0.0000
+SectionResolution: 0.0000
+TempAmbY: Ambient Temperature
+TempAmbLowerLimit: -30.0000
+TempAmbUpperLimit: 115.0000
+TempAmbResolution: 29.0000
+FreqY: Total Power
+FreqX: No Clocks Found!
+FreqLowerLimit: 10.0000
+FreqUpperLimit: 100.0000
+FreqAmbResolution: 20.0000
+PowerMode: Normal
+DisableBandgap: false
+DisablePor: false
+DisableDll: false
+DisableOsc: false
+DisablePLL0: false
+DisablePLL1: false
+DisableInRd0: false
+DisableInRd1: false
+DisableInRd2: false
+DisableInRd3: false
+DisableInRd4: false
+DisableInRd5: false
+DisableInRd6: false
+DisableInRd7: false
+EnablePg0: false
+EnablePg1: false
+EnablePg2: false
+EnablePg3: false
+EnablePg4: false
+EnablePg5: false
+EnablePg6: false
+EnablePg7: false
+DisableLVDS: false
+DisableLVDS1: false
+DisableLVDS2: false
+DisableLVDS3: false
+DisableLVDS4: false
+DisableLVDS5: false
+DisableLVDS6: false
+DisableLVDS7: false
+
+[[Thermal]]
+Airflow: 200 LFM
+AmbientTemperature: 25
+CustomThetaSA: -1
+JunctionTemperature: 25.19
+MaxSafeAmbient: 84.67
+ThetaBA: 10.0
+ThetaCS: 0
+ThetaEffective: 16.65
+ThetaJA: 20.59
+ThetaJB: 12.88
+ThetaJC: 0
+ThetaSA: -1
+UserThetaBA: No
+UserThetaCS: No
+UserThetaEffective: No
+UserThetaJA: No
+UserThetaJB: No
+UserThetaJC: No
+UserThetaSA: No
+thetaBoard: Medium Board
+thetaHeatSink: No Heat Sink
+thetaOption: ThermalModels
+
+[[VDPM]]
+Supply = Voltage, DPM
+Vcc = 3.300, 1.00
+Vccio 3.3 = 3.300, 1.00
+Vccio 2.5 = 2.500, 1.00
+Vccio 1.8 = 1.800, 1.00
+Vccio 1.5 = 1.500, 1.00
+Vccio 1.2 = 1.200, 1.00
+
+[[Logic]]
+Clk = F, AF, LUT, RAM, RIPPLE, REG, X0, X1, X2, X6, ISB, ISBLUT, ISBCE, ISBLSR, ISBM, ISBCLK
+COMBINATORIAL = 7.0000, 10.0000^d^, 56, 0, 0, 0, 59, 23, 123, 31, 119, 70, 16, 6, 9, 2
+_devsel_c = 1.0000, 10.0000^d^, 15, 0, 0, 8, 18, 18, 55, 9, 61, 49, 8, 3, 1, 8
+fclk_c = 7.0000, 10.0000^d^, 43, 0, 0, 35, 50, 25, 66, 18, 301, 290, 5, 5, 1, 23
+
+[[Clocks]]
+Clk = F, Duty, Pfeed, Ptrunk, Pspine, Ptap, Pbranch, Strunk, Sspine, Stap, Sbranch, Etb, Ebg, Elr
+_devsel_c = 1.0000, 50.0000, 0, 0, 0, 0, 0, t4_1, c13_1, r4_2, b_10, 0, 0, 0
+fclk_c = 7.0000, 50.0000, 0, t3_1, s13_1, p13_1_p17_1, c14_4_c17_4, 0, 0, 0, b_0, 0, 0, 0
+
+[[Input Output]]
+Clk = _Type, _Mode, F, AF, IP, OP, PG, Cload, Bank, _ActualMode, _Pull, X0, X1, X2, X6, ISB
+COMBINATORIAL = LVCMOS25, none, 7.0000, 10.0000^d^, 4, 0, OFF, 5, 2, none, DOWN, 0, 0, 0, 0, 0
+COMBINATORIAL = LVCMOS25, none, 7.0000, 10.0000^d^, 11, 0, OFF, 5, 1, none, DOWN, 0, 0, 0, 0, 0
+COMBINATORIAL = LVCMOS25, none, 7.0000, 10.0000^d^, 5, 0, OFF, 5, 0, none, DOWN, 0, 0, 0, 0, 0
+COMBINATORIAL = LVCMOS25-8mA-SLEW:SLOW, none, 7.0000, 10.0000^d^, 0, 2, N/A, 5, 2, none, DOWN, 0, 0, 0, 0, 0
+_devsel_c = LVCMOS25-8mA-SLEW:SLOW, none, 1.0000, 10.0000^d^, 0, 1, N/A, 5, 1, none, DOWN, 0, 0, 0, 0, 0
+_devsel_c = LVCMOS25-8mA-SLEW:SLOW, none, 1.0000, 10.0000^d^, 0, 2, N/A, 5, 0, none, DOWN, 0, 0, 0, 0, 0
+_devsel_c = LVCMOS25-8mA-SLEW:SLOW, none, 1.0000, 10.0000^d^, 0, 4, N/A, 5, 3, none, DOWN, 0, 0, 0, 0, 0
+_devsel_c = LVCMOS25-8mA-SLEW:SLOW, none, 1.0000, 10.0000^d^, 0, 10, N/A, 5, 2, none, DOWN, 0, 0, 0, 0, 0
+_devsel_c = LVCMOS25, none, 1.0000, 10.0000^d^, 1, 0, OFF, 5, 3, none, UP, 0, 0, 0, 0, 0
+fclk_c = LVCMOS25-8mA-SLEW:SLOW, none, 7.0000, 10.0000^d^, 0, 1, N/A, 5, 0, none, DOWN, 0, 0, 0, 0, 0
+fclk_c = LVCMOS25, none, 7.0000, 10.0000^d^, 1, 0, OFF, 5, 2, none, DOWN, 0, 0, 0, 0, 0
+
+[[Bidi]]
+ClkInpName = _Type, _Mode, InpF, InpAF, Bidi, PG, ClkOutName, OutF, OutAF, Duty, Cload, Bank, _ActualMode, _Pull, X0, X1, X2, X6, ISB
+COMBINATORIAL = LVCMOS25-8mA-SLEW:SLOW, none, 7.0000, 10.0000^d^, 5, OFF, N/A, 0.0000^d^, 10.0000^d^, 50, 5, 1, none, DOWN, 0, 0, 0, 0, 0
+_devsel_c = LVCMOS25-8mA-SLEW:SLOW, none, 1.0000, 10.0000^d^, 3, OFF, N/A, 0.0000^d^, 10.0000^d^, 50, 5, 1, none, DOWN, 0, 0, 0, 0, 0
+
+[[Bank Voltage]]
+Bank = Voltage, InRD, LVDSO, PG
+0 = Vccio 2.5, No, No, OFF
+1 = Vccio 2.5, No, N/A, OFF
+2 = Vccio 2.5, No, N/A, OFF
+3 = Vccio 2.5, No, N/A, OFF
+
+[[Termination]]
+_Type = IP, OP, Bidi, Duty, Bank, Rth, Vth
+LVCMOS25 = 5, 0, 0, 0.0, 2, 1.0E12, 0
+LVCMOS25 = 11, 0, 0, 0.0, 1, 1.0E12, 0
+LVCMOS25 = 5, 0, 0, 0.0, 0, 1.0E12, 0
+LVCMOS25-8mA-SLEW:SLOW = 0, 12, 0, 0.0, 2, 1.0E12, 0
+LVCMOS25-8mA-SLEW:SLOW = 0, 1, 8, 31.8, 1, 1.0E12, 0
+LVCMOS25-8mA-SLEW:SLOW = 0, 3, 0, 0.0, 0, 1.0E12, 0
+LVCMOS25-8mA-SLEW:SLOW = 0, 4, 0, 0.0, 3, 1.0E12, 0
+LVCMOS25 = 1, 0, 0, 0.0, 3, 1.0E12, 0
+
+[[SP RAM]]
+Clk = EBR, F, AF, _Type, X0, X1, X2, X6, ISB
+
+[[DP RAM]]
+RdClk = RdF, RdAF, EBR, WrClk, WrF, WrAF, _TypeA, _TypeB, X0, X1, X2, X6, ISB
+
+[[DP RAM True]]
+ClkA = aF, aAF, EBR, ClkB, bF, bAF, _TypeA, _TypeB, X0, X1, X2, X6, ISB
+fclk_c = 7.0000, 10.0000^d^, 2, NoNe, 0.0000^d^, 10.0000^d^, DP8KC_NORM_PORTA, DP8KC_NORM_PORTB, 0, 0, 0, 0, 0
+
+[[FIFO DC]]
+RdClk = RdF, RdAF, EBR, WrClk, WrF, WrAF, _TypeA, _TypeB, X0, X1, X2, X6, ISB
+
+[[I2C1]]
+Clk = F, AF, I2C1
+
+[[I2C2]]
+Clk = F, AF, I2C2
+
+[[SPI]]
+Clk = F, AF, SPI
+
+[[TC]]
+Clk = F, AF, TC, WBUSED
+
+[[UFM]]
+Clk = F, AF, UFM
+
+[[WISHBONE]]
+Clk = F, AF, WISHBONE
+
+[[CLKDIV]]
+Clk = F, AF, CLKDIV
+
+[[CIBTEST]]
+CIBTEST = 
+0 = 
+
+[[MCLK]]
+STANDBY = Clk, F, AF, MCLK, MCLKF, SEDF
+No = _CLKNAME, 266.0000, 100.0000, 1, 2.0800, 2.0800
+
+[[POR]]
+STANDBY = 
+No = 
+
+[[BANDGAP]]
+STANDBY = 
+No = 
+
+[[JTAG]]
+Clk = F, AF, Input, Output
+COMBINATORIAL = 7.0000, 100.0000, 3, 1
+
+[[SED]]
+_Mode = SED, STATUS
+SEDFA = 0, Disabled
+
+[[PLL Clock]]
+Out = In
+
+[[Connections]]
+Clock = Comp, Type
+COMBINATORIAL = myIwm/SLICE_31, 0
+COMBINATORIAL = data[5], 1
+COMBINATORIAL = data[3], 1
+COMBINATORIAL = data[2], 1
+COMBINATORIAL = data[1], 1
+COMBINATORIAL = data[0], 1
+COMBINATORIAL = _wrreq, 1
+COMBINATORIAL = debugInfo[0], 1
+_devsel_c = _devsel, 1
+_devsel_c = spi_clk, 1
+_devsel_c = spi_mosi, 1
+_devsel_c = spi_cs, 1
+_devsel_c = debugInfo[7], 1
+_devsel_c = debugInfo[6], 1
+_devsel_c = debugInfo[5], 1
+_devsel_c = debugInfo[4], 1
+_devsel_c = debugInfo[3], 1
+_devsel_c = debugInfo[2], 1
+_devsel_c = debugInfo[1], 1
+_devsel_c = _en245, 1
+_devsel_c = phase[0], 1
+_devsel_c = data[7], 1
+_devsel_c = data[6], 1
+_devsel_c = data[4], 1
+_devsel_c = phase[2], 1
+_devsel_c = phase[3], 1
+_devsel_c = _enbl1, 1
+_devsel_c = _enbl2, 1
+_devsel_c = phase[1], 1
+fclk_c = fclk, 1
+fclk_c = wrdata, 1
+
+[[Hierarchical Connections]]
+Key = Name, Type
+SIGNAL = COMBINATORIAL, DUMMY
+INPUT = myIwm/SLICE_31, SLICE
+INPUT = myIwm/SLICE_32, SLICE
+INPUT = myIwm/SLICE_34, SLICE
+INPUT = myIwm/SLICE_35, SLICE
+INPUT = SLICE_36, SLICE
+INPUT = myIwm/SLICE_37, SLICE
+INPUT = myIwm/SLICE_38, SLICE
+INPUT = myIwm/SLICE_40, SLICE
+INPUT = myIwm/SLICE_41, SLICE
+INPUT = myIwm/SLICE_42, SLICE
+INPUT = myIwm/SLICE_44, SLICE
+INPUT = myIwm/SLICE_45, SLICE
+INPUT = myIwm/SLICE_46, SLICE
+INPUT = myIwm/SLICE_47, SLICE
+INPUT = myIwm/SLICE_48, SLICE
+INPUT = SLICE_49, SLICE
+INPUT = myIwm/SLICE_50, SLICE
+INPUT = myIwm/SLICE_52, SLICE
+INPUT = myIwm/SLICE_54, SLICE
+INPUT = myIwm/SLICE_55, SLICE
+INPUT = myIwm/SLICE_56, SLICE
+INPUT = myIwm/SLICE_59, SLICE
+INPUT = myIwm/SLICE_60, SLICE
+INPUT = myIwm/SLICE_61, SLICE
+INPUT = myIwm/SLICE_62, SLICE
+INPUT = myIwm/SLICE_63, SLICE
+INPUT = myIwm/SLICE_64, SLICE
+INPUT = SLICE_65, SLICE
+INPUT = data[5], PIO
+INPUT = data[3], PIO
+INPUT = data[2], PIO
+INPUT = data[1], PIO
+INPUT = data[0], PIO
+INPUT = _wrreq, PIO
+INPUT = debugInfo[0], PIO
+INPUT = addr[11], PIO
+INPUT = addr[10], PIO
+INPUT = addr[9], PIO
+INPUT = addr[8], PIO
+INPUT = addr[7], PIO
+INPUT = addr[6], PIO
+INPUT = addr[5], PIO
+INPUT = addr[4], PIO
+INPUT = addr[3], PIO
+INPUT = addr[2], PIO
+INPUT = addr[1], PIO
+INPUT = addr[0], PIO
+INPUT = q3, PIO
+INPUT = rw, PIO
+INPUT = _iostrobe, PIO
+INPUT = _iosel, PIO
+INPUT = _reset, PIO
+INPUT = sense, PIO
+INPUT = rddata, PIO
+INPUT = spi_miso, PIO
+INPUT = GSR_INST, GSR
+SIGNAL = _devsel_c, DUMMY
+INPUT = _devsel, PIO
+OUTPUT = SLICE_27, SLICE
+OUTPORT = GND_net, F0
+OUTPORT = q6, Q0
+OUTPUT = spi_clk, PIO
+OUTPUT = spi_mosi, PIO
+OUTPUT = spi_cs, PIO
+OUTPUT = debugInfo[7], PIO
+OUTPUT = debugInfo[6], PIO
+OUTPUT = debugInfo[5], PIO
+OUTPUT = debugInfo[4], PIO
+OUTPUT = debugInfo[3], PIO
+OUTPUT = debugInfo[2], PIO
+OUTPUT = debugInfo[1], PIO
+OUTPUT = SLICE_28, SLICE
+OUTPORT = n1748, F0
+OUTPORT = q7, Q0
+OUTPORT = VCC_net, F1
+OUTPUT = _en245, PIO
+OUTPUT = SLICE_33, SLICE
+OUTPORT = n1717, F0
+OUTPORT = phase_c_0, Q0
+OUTPORT = data_7_N_1_7, F1
+OUTPUT = phase[0], PIO
+OUTPUT = data[7], PIO
+OUTPUT = SLICE_39, SLICE
+OUTPORT = iwmDataOut_6, F0
+OUTPORT = myIwm/motorOn, Q0
+OUTPORT = data_7_N_1_6, F1
+OUTPUT = data[6], PIO
+OUTPUT = SLICE_51, SLICE
+OUTPORT = data_7_N_1_4, F0
+OUTPORT = phase_c_2, Q0
+OUTPORT = n1740, F1
+OUTPUT = data[4], PIO
+OUTPUT = phase[2], PIO
+OUTPUT = myIwm/SLICE_57, SLICE
+OUTPORT = myIwm/fclk_c_enable_27, F0
+OUTPORT = phase_c_3, Q0
+OUTPORT = myIwm/fclk_c_enable_21, F1
+OUTPUT = phase[3], PIO
+OUTPUT = myIwm/SLICE_58, SLICE
+OUTPORT = _enbl1_N_121, F0
+OUTPORT = myIwm/driveSelect, Q0
+OUTPORT = _enbl2_N_125, F1
+OUTPUT = _enbl1, PIO
+OUTPUT = _enbl2, PIO
+OUTPUT = SLICE_66, SLICE
+OUTPORT = n1716, F0
+OUTPORT = phase_c_1, Q0
+OUTPORT = myIwm/n1733, F1
+OUTPUT = phase[1], PIO
+SIGNAL = fclk_c, DUMMY
+INPUT = fclk, PIO
+OUTPUT = myIwm/SLICE_0, SLICE
+OUTPORT = myIwm/buffer_7_N_46_3, F0
+OUTPORT = buffer_3, Q0
+OUTPORT = myIwm/buffer_7_N_46_4, F1
+OUTPORT = buffer_4, Q1
+OUTPUT = myIwm/SLICE_1, SLICE
+OUTPORT = myIwm/buffer_7_N_46_7, F0
+OUTPORT = buffer_7, Q0
+OUTPORT = myIwm/n11, F1
+OUTPUT = SLICE_2, SLICE
+OUTPORT = n1783, F0
+OUTPORT = myAddrDecoder/romActive, Q0
+OUTPUT = myIwm/SLICE_4, SLICE
+OUTPORT = myIwm/n20_adj_144, F0
+OUTPORT = myIwm/bitCounter_0, Q0
+OUTPORT = myIwm/n19, F1
+OUTPORT = myIwm/bitCounter_1, Q1
+OUTPUT = myIwm/SLICE_5, SLICE
+OUTPORT = myIwm/n18, F0
+OUTPORT = myIwm/bitCounter_2, Q0
+OUTPUT = myIwm/SLICE_6, SLICE
+OUTPORT = myIwm/n1598, F0
+OUTPORT = myIwm/bitTimer_0, Q0
+OUTPORT = myIwm/n1586, F1
+OUTPORT = myIwm/bitTimer_1, Q1
+OUTPUT = myIwm/SLICE_7, SLICE
+OUTPORT = myIwm/n258, F0
+OUTPORT = myIwm/bitTimer_2, Q0
+OUTPORT = myIwm/n259, F1
+OUTPORT = myIwm/bitTimer_3, Q1
+OUTPUT = myIwm/SLICE_8, SLICE
+OUTPORT = myIwm/n260, F0
+OUTPORT = myIwm/bitTimer_4, Q0
+OUTPORT = myIwm/n261, F1
+OUTPORT = myIwm/bitTimer_5, Q1
+OUTPUT = myIwm/SLICE_9, SLICE
+OUTPORT = myIwm/buffer_7_N_46_0, F0
+OUTPORT = myIwm/buffer_0, Q0
+OUTPORT = myIwm/buffer_7_N_46_1, F1
+OUTPORT = myIwm/buffer_1, Q1
+OUTPUT = myIwm/SLICE_10, SLICE
+OUTPORT = myIwm/buffer_7_N_46_2, F0
+OUTPORT = myIwm/buffer_2, Q0
+OUTPORT = myIwm/buffer_7_N_46_5, F1
+OUTPORT = myIwm/buffer_5, Q1
+OUTPUT = myIwm/SLICE_11, SLICE
+OUTPORT = myIwm/buffer_7_N_46_6, F0
+OUTPORT = myIwm/buffer_6, Q0
+OUTPUT = myIwm/SLICE_12, SLICE
+OUTPORT = myIwm/clearBufferTimer_3_N_67_0, F0
+OUTPORT = myIwm/clearBufferTimer_0, Q0
+OUTPORT = myIwm/n7, F1
+OUTPUT = myIwm/SLICE_13, SLICE
+OUTPORT = myIwm/n71, F0
+OUTPORT = myIwm/clearBufferTimer_1, Q0
+OUTPORT = myIwm/n70, F1
+OUTPORT = myIwm/clearBufferTimer_2, Q1
+OUTPUT = myIwm/SLICE_14, SLICE
+OUTPORT = myIwm/n69, F0
+OUTPORT = myIwm/clearBufferTimer_3, Q0
+OUTPORT = myIwm/n1750, F1
+OUTPUT = myIwm/SLICE_18, SLICE
+OUTPORT = myIwm/shifter_7_N_97_0, OFX0
+OUTPORT = myIwm/shifter_0, Q0
+OUTPUT = myIwm/SLICE_19, SLICE
+OUTPORT = myIwm/shifter_7_N_97_1, F0
+OUTPORT = myIwm/shifter_1, Q0
+OUTPORT = myIwm/shifter_7_N_97_2, F1
+OUTPORT = myIwm/shifter_2, Q1
+OUTPUT = myIwm/SLICE_20, SLICE
+OUTPORT = myIwm/shifter_7_N_97_3, F0
+OUTPORT = myIwm/shifter_3, Q0
+OUTPORT = myIwm/shifter_7_N_97_4, F1
+OUTPORT = myIwm/shifter_4, Q1
+OUTPUT = myIwm/SLICE_21, SLICE
+OUTPORT = myIwm/shifter_7_N_97_5, F0
+OUTPORT = myIwm/shifter_5, Q0
+OUTPORT = myIwm/shifter_7_N_97_6, F1
+OUTPORT = myIwm/shifter_6, Q1
+OUTPUT = myIwm/SLICE_22, SLICE
+OUTPORT = myIwm/shifter_7_N_97_7, F0
+OUTPORT = myIwm/shifter_7, Q0
+OUTPORT = myIwm/n230, F1
+OUTPUT = myIwm/SLICE_29, SLICE
+OUTPORT = myIwm/wrdata_N_112, F0
+OUTPORT = wrdata_c, Q0
+OUTPORT = myIwm/n8, F1
+OUTPUT = wrdata, PIO
+OUTPUT = myIwm/SLICE_30, SLICE
+OUTPORT = myIwm/writeBufferEmpty_N_136, F0
+OUTPORT = writeBufferEmpty, Q0
+OUTPORT = myIwm/n1735, F1
+OUTPUT = myIwm/SLICE_43, SLICE
+OUTPORT = myIwm/fclk_c_enable_30, F0
+OUTPORT = myIwm/rddataSync_0, Q0
+OUTPORT = n1744, F1
+OUTPORT = myIwm/rddataSync_1, Q1
+OUTPUT = myIwm/SLICE_53, SLICE
+OUTPORT = myIwm/_devsel_N_37_enable_3, F0
+OUTPORT = myIwm/_underrun, Q0
+OUTPORT = myIwm/_devsel_N_37_enable_4, F1
+OUTPUT = myROM/codeROM_0_0_1_0, EBR
+OUTPORT = romOutput_7, DOA3
+OUTPORT = romOutput_6, DOA2
+OUTPORT = romOutput_5, DOA1
+OUTPORT = romOutput_4, DOA0
+OUTPUT = myROM/codeROM_0_0_0_1, EBR
+OUTPORT = romOutput_3, DOA3
+OUTPORT = romOutput_2, DOA2
+OUTPORT = romOutput_1, DOA1
+OUTPORT = romOutput_0, DOA0
+

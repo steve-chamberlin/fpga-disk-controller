@@ -1,0 +1,51 @@
+[Device]
+Family=machxo2
+PartType=LCMXO2-1200HC
+PartName=LCMXO2-1200HC-4TG100C
+SpeedGrade=4
+Package=TQFP100
+OperatingCondition=COM
+Status=S
+
+[IP]
+VendorName=Lattice Semiconductor Corporation
+CoreType=LPM
+CoreStatus=Demo
+CoreName=ROM
+CoreRevision=5.4
+ModuleName=codeROM
+SourceFormat=Verilog HDL
+ParameterFileVersion=1.0
+Date=01/30/2018
+Time=17:35:12
+
+[Parameters]
+Verilog=1
+VHDL=0
+EDIF=1
+Destination=Synplicity
+Expression=BusA(0 to 7)
+Order=Big Endian [MSB:LSB]
+IO=0
+Address=4096
+Data=8
+enByte=0
+ByteSize=9
+OutputEn=1
+ClockEn=0
+Optimization=Area
+Reset=Sync
+Reset1=Sync
+Init=0
+MemFile=c:/users/chamberlin/documents/liron/rom-full-4k.mem
+MemFormat=hex
+EnECC=0
+Pipeline=0
+Write=Normal
+init_data=0
+
+[FilesGenerated]
+c:/users/chamberlin/documents/liron/rom-full-4k.mem=mem
+
+[Command]
+cmd_line= -w -n codeROM -lang verilog -synth lse -bus_exp 7 -bb -arch xo2c00 -type romblk -device LCMXO2-1200HC -addr_width 12 -data_width 8 -num_words 4096 -outdata REGISTERED -cascade 11 -resetmode SYNC -sync_reset -memfile "c:/users/chamberlin/documents/liron/rom-full-4k.mem" -memformat hex

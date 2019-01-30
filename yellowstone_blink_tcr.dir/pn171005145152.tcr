@@ -1,0 +1,32 @@
+#Start recording tcl command: 10/5/2017 11:43:34
+#Project Location: C:/Users/chamberlin/Documents/Liron; Project name: yellowstone_blink
+C:/Users/chamberlin/Documents/Liron/lattice
+liron
+#Start recording tcl command: 10/5/2017 14:51:52
+#Project Location: C:/Users/chamberlin/Documents/Liron/lattice; Project name: liron
+prj_project new -name "yellowstone_blink" -impl "yellowstone_blink" -dev LCMXO2-1200HC-4TG100C -synthesis "lse"
+prj_project save
+prj_src add -exclude "C:/Users/chamberlin/Documents/Liron/yellowstone_blink/yellowstone_blink.xcf"
+prj_src enable "C:/Users/chamberlin/Documents/Liron/yellowstone_blink/yellowstone_blink.xcf"
+pgr_program set -cable USB
+pgr_program set -port EzUSB-0
+prj_src add "C:/Users/chamberlin/Documents/Liron/top.v"
+prj_run PAR -impl yellowstone_blink
+prj_run PAR -impl yellowstone_blink
+prj_run Export -impl yellowstone_blink
+prj_run Export -impl yellowstone_blink
+pgr_program run
+pgr_project save "C:/Users/chamberlin/Documents/Liron/yellowstone_blink/yellowstone_blink.xcf"
+pgr_project save "C:/Users/chamberlin/Documents/Liron/yellowstone_blink/yellowstone_blink.xcf"
+pgr_program run
+prj_run Export -impl yellowstone_blink
+pgr_program run
+prj_run PAR -impl yellowstone_blink
+prj_run PAR -impl yellowstone_blink
+prj_run Export -impl yellowstone_blink
+pgr_project save "C:/Users/chamberlin/Documents/Liron/yellowstone_blink/yellowstone_blink.xcf"
+pgr_program run
+prj_project save
+prj_project close
+prj_project open "C:/Users/chamberlin/Documents/Liron/lattice/liron.ldf"
+#Stop recording: 10/5/2017 14:51:52

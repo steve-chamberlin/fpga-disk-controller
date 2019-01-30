@@ -1,0 +1,10 @@
+---------------------------------------------------
+Report for cell blink
+   Instance path: blink
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      12.00        100.0
+                                  LUT4	       1.00        100.0
+                                 IOBUF	          2        100.0
+                                PFUREG	         21        100.0
+                                RIPPLE	         11        100.0

@@ -1,0 +1,53 @@
+----------------------------------------------------------------------
+Report for cell top.TECH
+Register bits:  43 of 1520 (2.829%)
+I/O cells:      52
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                                 BB         8          100.0
+                              DP8KC         4          100.0
+                            FD1P3AX        29          100.0
+                            FD1P3IX        10          100.0
+                            FD1P3JX         1          100.0
+                            FD1S3AX         2          100.0
+                            FD1S3AY         1          100.0
+                                GSR         1          100.0
+                                 IB        22          100.0
+                                INV         1          100.0
+                               LUT4       115          100.0
+                                 OB        19          100.0
+                                OBZ         3          100.0
+                              PFUMX         1          100.0
+SUB MODULES
+                        addrDecoder         1
+                            codeROM         1
+                                iwm         1
+                              TOTAL       220
+----------------------------------------------------------------------
+Report for cell iwm.v1
+Instance Path : myIwm
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            FD1P3AX        29          100.0
+                            FD1P3IX         9           90.0
+                            FD1P3JX         1          100.0
+                            FD1S3AX         2          100.0
+                            FD1S3AY         1          100.0
+                               LUT4       103           89.6
+                              PFUMX         1          100.0
+                              TOTAL       146
+----------------------------------------------------------------------
+Report for cell codeROM.v1
+Instance Path : myROM
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                              DP8KC         4          100.0
+                              TOTAL         4
+----------------------------------------------------------------------
+Report for cell addrDecoder.v1
+Instance Path : myAddrDecoder
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            FD1P3IX         1           10.0
+                               LUT4         4            3.5
+                              TOTAL         5

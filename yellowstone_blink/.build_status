@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BuildStatus>
+    <Strategy name="Strategy1">
+        <Milestone name="Export" build_result="0" build_time="0">
+            <Task name="IBIS" build_result="0" update_result="2" update_time="0"/>
+            <Task name="TimingSimFileVlg" build_result="0" update_result="2" update_time="0"/>
+            <Task name="TimingSimFileVHD" build_result="0" update_result="2" update_time="0"/>
+            <Task name="Bitgen" build_result="2" update_result="0" update_time="1507243234"/>
+            <Task name="Jedecgen" build_result="2" update_result="0" update_time="1507231267"/>
+        </Milestone>
+        <Milestone name="Map" build_result="2" build_time="1507231238">
+            <Task name="Map" build_result="2" update_result="0" update_time="1507231238"/>
+            <Task name="MapTrace" build_result="0" update_result="2" update_time="0"/>
+            <Task name="MapVerilogSimFile" build_result="0" update_result="2" update_time="0"/>
+            <Task name="MapVHDLSimFile" build_result="0" update_result="2" update_time="0"/>
+        </Milestone>
+        <Milestone name="PAR" build_result="2" build_time="1507231243">
+            <Task name="PAR" build_result="2" update_result="0" update_time="1507231243"/>
+            <Task name="PARTrace" build_result="0" update_result="2" update_time="0"/>
+            <Task name="IOTiming" build_result="0" update_result="2" update_time="0"/>
+        </Milestone>
+        <Milestone name="Synthesis" build_result="2" build_time="1507231187">
+            <Task name="Lattice_Synthesis" build_result="2" update_result="0" update_time="1507231187"/>
+            <Task name="LSE_Compile" build_result="2" update_result="0" update_time="1507231195"/>
+        </Milestone>
+        <Milestone name="TOOL_Report" build_result="0" build_time="0">
+            <Task name="HDLE" build_result="2" update_result="0" update_time="1518640433"/>
+            <Task name="SSO" build_result="0" update_result="3" update_time="0"/>
+            <Task name="PIODRC" build_result="0" update_result="3" update_time="0"/>
+        </Milestone>
+        <Report name=".vdbs/yellowstone_blink_yellowstone_blink_map.vdb" last_build_time="1507227638" last_build_size="30358"/>
+        <Report name="yellowstone_blink_yellowstone_blink.bgn" last_build_time="1507239634" last_build_size="4062"/>
+        <Report name="yellowstone_blink_yellowstone_blink.bit" last_build_time="1507239634" last_build_size="6229"/>
+        <Report name="yellowstone_blink_yellowstone_blink.jed" last_build_time="1507227667" last_build_size="349999"/>
+        <Report name="yellowstone_blink_yellowstone_blink.lsedata" last_build_time="1507227587" last_build_size="16549"/>
+        <Report name="yellowstone_blink_yellowstone_blink.ncd" last_build_time="1507227643" last_build_size="23142"/>
+        <Report name="yellowstone_blink_yellowstone_blink.ngd" last_build_time="1507227587" last_build_size="22808"/>
+        <Report name="yellowstone_blink_yellowstone_blink_map.ncd" last_build_time="1507227637" last_build_size="17980"/>
+    </Strategy>
+</BuildStatus>

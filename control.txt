@@ -1,0 +1,3 @@
+load $C000 LIRONALL.bin
+entry $C700
+save disasm.asm

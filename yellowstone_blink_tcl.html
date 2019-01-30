@@ -1,0 +1,156 @@
+<HTML>
+<HEAD><TITLE>Lattice TCL Log</TITLE>
+<STYLE TYPE="text/css">
+<!--
+ body,pre{    font-family:'Courier New', monospace;    color: #000000;    font-size:88%;    background-color: #ffffff;}h1 {    font-weight: bold;    margin-top: 24px;    margin-bottom: 10px;    border-bottom: 3px solid #000;    font-size: 1em;}h2 {    font-weight: bold;    margin-top: 18px;    margin-bottom: 5px;    font-size: 0.90em;}h3 {    font-weight: bold;    margin-top: 12px;    margin-bottom: 5px;    font-size: 0.80em;}p {    font-size:78%;}P.Table {    margin-top: 4px;    margin-bottom: 4px;    margin-right: 4px;    margin-left: 4px;}table{    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    border-collapse: collapse;}th {    font-weight:bold;    padding: 4px;    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    vertical-align:top;    text-align:left;    font-size:78%;}td {    padding: 4px;    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    vertical-align:top;    font-size:78%;}a {    color:#013C9A;    text-decoration:none;}a:visited {    color:#013C9A;}a:hover, a:active {    text-decoration:underline;    color:#5BAFD4;}.pass{background-color: #00ff00;}.fail{background-color: #ff0000;}.comment{    font-size: 90%;    font-style: italic;}
+-->
+</STYLE>
+</HEAD>
+<PRE><A name="pn171005145152"></A><B><U><big>pn171005145152</big></U></B>
+#Start recording tcl command: 10/5/2017 11:43:34
+#Project Location: C:/Users/chamberlin/Documents/Liron; Project name: yellowstone_blink
+C:/Users/chamberlin/Documents/Liron/lattice
+liron
+#Start recording tcl command: 10/5/2017 14:51:52
+#Project Location: C:/Users/chamberlin/Documents/Liron/lattice; Project name: liron
+prj_project new -name "yellowstone_blink" -impl "yellowstone_blink" -dev LCMXO2-1200HC-4TG100C -synthesis "lse"
+prj_project save
+prj_src add -exclude "C:/Users/chamberlin/Documents/Liron/yellowstone_blink/yellowstone_blink.xcf"
+prj_src enable "C:/Users/chamberlin/Documents/Liron/yellowstone_blink/yellowstone_blink.xcf"
+pgr_program set -cable USB
+pgr_program set -port EzUSB-0
+prj_src add "C:/Users/chamberlin/Documents/Liron/top.v"
+prj_run PAR -impl yellowstone_blink
+prj_run PAR -impl yellowstone_blink
+prj_run Export -impl yellowstone_blink
+prj_run Export -impl yellowstone_blink
+pgr_program run
+pgr_project save "C:/Users/chamberlin/Documents/Liron/yellowstone_blink/yellowstone_blink.xcf"
+pgr_project save "C:/Users/chamberlin/Documents/Liron/yellowstone_blink/yellowstone_blink.xcf"
+pgr_program run
+prj_run Export -impl yellowstone_blink
+pgr_program run
+prj_run PAR -impl yellowstone_blink
+prj_run PAR -impl yellowstone_blink
+prj_run Export -impl yellowstone_blink
+pgr_project save "C:/Users/chamberlin/Documents/Liron/yellowstone_blink/yellowstone_blink.xcf"
+pgr_program run
+prj_project save
+prj_project close
+prj_project open "C:/Users/chamberlin/Documents/Liron/lattice/liron.ldf"
+#Stop recording: 10/5/2017 14:51:52
+
+
+
+<A name="pn171005155108"></A><B><U><big>pn171005155108</big></U></B>
+#Start recording tcl command: 10/5/2017 15:05:29
+#Project Location: C:/Users/chamberlin/Documents/Liron; Project name: yellowstone_blink
+prj_project open "C:/Users/chamberlin/Documents/Liron/yellowstone_blink.ldf"
+pgr_project close
+pgr_project open "C:/Users/chamberlin/Documents/Liron/yellowstone_blink/yellowstone_blink.xcf"
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+prj_run Export -impl yellowstone_blink -task Bitgen -forceOne
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_project save "C:/Users/chamberlin/Documents/Liron/yellowstone_blink/yellowstone_blink.xcf"
+prj_project close
+#Stop recording: 10/5/2017 15:51:08
+
+
+
+<A name="pn180130154424"></A><B><U><big>pn180130154424</big></U></B>
+#Start recording tcl command: 1/25/2018 16:29:45
+#Project Location: C:/Users/chamberlin/Documents/Liron; Project name: yellowstone_blink
+prj_project open "C:/Users/chamberlin/Documents/Liron/yellowstone_blink.ldf"
+pgr_project open "C:/Users/chamberlin/Documents/Liron/yellowstone_blink/yellowstone_blink.xcf"
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+prj_project close
+#Stop recording: 1/30/2018 15:44:24
+
+
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</PRE></FONT>
+</BODY>
+</HTML>

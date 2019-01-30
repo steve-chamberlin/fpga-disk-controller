@@ -1,0 +1,184 @@
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN"><HTML>
+<HEAD>
+<TITLE>SSO Report</TITLE>
+<meta http-equiv=content-type content="text/html; charset=windows-1252">
+<meta name=generator-major-version content=0.1>
+<meta name=generator-minor-version content=1>
+<meta name=filetype content=kadov>
+<meta name=filetype-version content=1>
+<meta name=page-count content=1>
+<meta name=layout-height content=2796>
+<meta name=layout-width content=772>
+<style>
+<!--
+body {
+    font-family: Verdana, Arial, helvetica, sans-serif;
+    color: #000000;
+    background-color: #ffffff;
+}
+h1 {
+    font-weight: bold;
+    margin-top: 24px;
+    margin-bottom: 10px;
+    border-bottom: 3px solid #000;    font-size: 1em;
+}
+h2 {
+    font-weight: bold;
+    margin-top: 18px;
+    margin-bottom: 5px;
+    font-size: 0.90em;
+}
+h3 {
+    font-weight: bold;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    font-size: 0.80em;
+}
+p {
+    font-size:71%;
+}
+P.Table {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+table
+{
+    border-width: 1px 1px 1px 1px;
+    border-style: solid solid solid solid;
+    border-color: black black black black;
+    border-collapse: collapse;
+}
+th {
+    font-weight:bold;
+    padding: 4px;
+    border-width: 1px 1px 1px 1px;
+    border-style: solid solid solid solid;
+    border-color: black black black black;
+    vertical-align:top;
+    text-align:left;
+    font-size:71%;
+}
+td {
+    padding: 4px;
+    border-width: 1px 1px 1px 1px;
+    border-style: solid solid solid solid;
+    border-color: black black black black;
+    vertical-align:top;
+    font-size:71%;
+}
+a {
+    color:#013C9A;
+    text-decoration:none;
+}
+
+a:visited {
+    color:#013C9A;
+}
+
+a:hover, a:active {
+    text-decoration:underline;
+    color:#5BAFD4;
+}
+.pass
+{
+background-color: #00ff00;
+}
+.fail
+{
+background-color: #ff0000;
+}
+.comment
+{
+    font-size: 90%;
+    font-style: italic;
+}
+-->
+</style>
+</HEAD>
+<BODY>
+<H1>I/O SSO Analysis Report</H1>
+<P><PRE>
+ssoana:  version Diamond (64-bit) 3.9.0.99.2
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights reserved.
+Thu Jul 27 12:31:02 2017
+</PRE></P>
+<H1>Report Information</H1>
+<P><PRE>
+Target Vendor         : Lattice
+Target Device         : LCMXO2-640HC
+Target Package        : TQFP100
+Target Performance    : 4
+SSO Data Revision     : Final	Version 2.2
+</PRE></P>
+<P>About SSO Analysis Results: SSO analysis results are based on a specific lab environment and should be used for estimating SSO switching noise.  The user environment may yield a different result from this analysis tool.
+<P><B>Note</B>: <U>N/S</U> means SSO tool does not support the IO preference setting.
+
+
+<H1>Bank SSO Results</H1>
+<H2> SSO Information of each Bank(Bounce)</H2>
+<P>The table lists SSO information of each bank(Bounce SSO).
+ If any pin in the bank are not assigned, Bank SSO calculation will consider the worst pin assignments which lead to the largest device SSO noise. It may be larger than that of real pin assignments.
+<P><TABLE>
+<TR><TH>Bank</TH><TH>SID</TH><TH>Device SSO(mV)</TH><TH>Board SSO(mV)</TH><TH>Total SSO(mV)<TH>Criteria(mV)</TH><TH>Allowance</TH><TH>Percentage</TH><TH>Status</TH></TR>
+<TR><TD>0</TD><TD> </TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>100.00%</TD><TD>0.00%</TD><TD class='pass'>PASS</TD></TR>
+<TR><TD>1</TD><TD> </TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>100.00%</TD><TD>0.00%</TD><TD class='pass'>PASS</TD></TR>
+<TR><TD>2</TD><TD> </TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>100.00%</TD><TD>0.00%</TD><TD class='pass'>PASS</TD></TR>
+<TR><TD>3</TD><TD> </TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>100.00%</TD><TD>0.00%</TD><TD class='pass'>PASS</TD></TR>
+</TABLE>
+<H2> Device SSO Information of each SwitchingID(Bounce)</H2>
+<P>The table lists Device SSO information of each switching ID. Pins in the same standard have same attribuites, such as IO type, drive, load, etc.  Pins in the same group have same switching ID.
+<P>
+<TABLE>
+<TR><TH>SwitchingID</TH><TH>Bank</TH><TH>Device SSO of Group(mV)</TH><TH>#Pins</TH><TH>IO Type</TH><TH>Drive(mA)</TH><TH>Slew</TH><TH>Load(pF)</TH><TH>Device SSO of Standard(mV)</TH></TR>
+</TABLE>
+<H2> SSO Information of each Bank(Drop)</H2>
+<P>The table lists SSO information of each bank(Drop SSO).
+If any pin in the bank are not assigned, Bank SSO calculation will consider the worst pin assignments which lead to the largest device SSO noise. It may be larger than that of real pin assignments.
+<P><TABLE>
+<TR><TH>Bank</TH><TH>SID</TH><TH>Device SSO(mV)</TH><TH>Board SSO(mV)</TH><TH>Total SSO(mV)<TH>Criteria(mV)</TH><TH>Allowance</TH><TH>Percentage</TH><TH>Status</TH></TR>
+<TR><TD>0</TD><TD> </TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>100.00%</TD><TD>0.00%</TD><TD class='pass'>PASS</TD></TR>
+<TR><TD>1</TD><TD> </TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>100.00%</TD><TD>0.00%</TD><TD class='pass'>PASS</TD></TR>
+<TR><TD>2</TD><TD> </TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>100.00%</TD><TD>0.00%</TD><TD class='pass'>PASS</TD></TR>
+<TR><TD>3</TD><TD> </TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>100.00%</TD><TD>0.00%</TD><TD class='pass'>PASS</TD></TR>
+</TABLE>
+<H2> Device SSO Information of each SwitchingID(Drop)</H2>
+<P>The table lists Device SSO information of each switching ID. Pins in the same standard have same attribuites, such as IO type, drive, load, etc.  Pins in the same group have same switching ID.
+<P>
+<TABLE>
+<TR><TH>SwitchingID</TH><TH>Bank</TH><TH>Device SSO of Group(mV)</TH><TH>#Pins</TH><TH>IO Type</TH><TH>Drive(mA)</TH><TH>Slew</TH><TH>Load(pF)</TH><TH>Device SSO of Standard(mV)</TH></TR>
+</TABLE>
+<H1>Pin SSO Results</H1><H2>Worst Bounce SSO of each Bank</H2>
+<P>The table lists the worst bounce SSO information of each bank. The information comes from the pin which has the worst bounce SSO status in the bank. Please click bank index to view information of all pins in the bank. Note that pin SSO calculation requires all pins in the bank are assigned. If not, please refer to bank SSO results.
+<P>
+<TABLE>
+<TR><TH>Bank</TH><TH>Device SSO(mV)</TH><TH>Board SSO(mV)</TH><TH>Total SSO(mV)</TH><TH>Criteria(mV)</TH><TH>Allowance</TH><TH>Percentage</TH><TH>Status</TH></TR>
+<TR><TD>0</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>100.00%</TD><TD>0.00%</TD><TD class='pass'>PASS</TD></TR>
+<TR><TD>1</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>100.00%</TD><TD>0.00%</TD><TD class='pass'>PASS</TD></TR>
+<TR><TD>2</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>100.00%</TD><TD>0.00%</TD><TD class='pass'>PASS</TD></TR>
+<TR><TD>3</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>100.00%</TD><TD>0.00%</TD><TD class='pass'>PASS</TD></TR>
+</TABLE>
+<H2>Worst Drop SSO of each Bank</H2>
+<P>The table lists the worst drop SSO information of each bank. The information comes from the pin which has the worst drop SSO status in the bank. Please click bank index to view information of all pins in the bank. Note that pin SSO calculation requires all pins in the bank are assigned. If not, please refer to bank SSO results.
+<P>
+<TABLE>
+<TR><TH>Bank</TH><TH>Device SSO(mV)</TH><TH>Board SSO(mV)</TH><TH>Total SSO(mV)</TH><TH>Criteria(mV)</TH><TH>Allowance</TH><TH>Percentage</TH><TH>Status</TH></TR>
+<TR><TD>0</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>100.00%</TD><TD>0.00%</TD><TD class='pass'>PASS</TD></TR>
+<TR><TD>1</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>100.00%</TD><TD>0.00%</TD><TD class='pass'>PASS</TD></TR>
+<TR><TD>2</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>100.00%</TD><TD>0.00%</TD><TD class='pass'>PASS</TD></TR>
+<TR><TD>3</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>0.00</TD><TD>100.00%</TD><TD>0.00%</TD><TD class='pass'>PASS</TD></TR>
+</TABLE>
+<H2>Bounce SSO Information of Pins of each Bank</H2>
+<P>Following tables list bounce SSO information of pins bank by bank. Please click pin names to view where the noise originates.
+<P><H2>Drop SSO Information of Pins of each Bank</H2>
+<P>Following tables list drop SSO information of pins bank by bank. Please click pin names to view where the noise originates.
+<P><H2>Detailed SSO Report of Pins</H2>
+<P>Following tables list where each pin's noise originates
+<P>
+</BODY>
+</HTML>

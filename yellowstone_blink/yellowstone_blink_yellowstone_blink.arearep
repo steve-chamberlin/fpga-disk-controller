@@ -1,0 +1,12 @@
+----------------------------------------------------------------------
+Report for cell blink.TECH
+Register bits:  21 of 1520 (1.382%)
+I/O cells:      2
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                              CCU2D        11          100.0
+                            FD1S3AX        21          100.0
+                                GSR         1          100.0
+                                 OB         2          100.0
+                               OSCH         1          100.0
+                              TOTAL        36

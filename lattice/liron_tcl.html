@@ -1,0 +1,226 @@
+<HTML>
+<HEAD><TITLE>Lattice TCL Log</TITLE>
+<STYLE TYPE="text/css">
+<!--
+ body,pre{    font-family:'Courier New', monospace;    color: #000000;    font-size:88%;    background-color: #ffffff;}h1 {    font-weight: bold;    margin-top: 24px;    margin-bottom: 10px;    border-bottom: 3px solid #000;    font-size: 1em;}h2 {    font-weight: bold;    margin-top: 18px;    margin-bottom: 5px;    font-size: 0.90em;}h3 {    font-weight: bold;    margin-top: 12px;    margin-bottom: 5px;    font-size: 0.80em;}p {    font-size:78%;}P.Table {    margin-top: 4px;    margin-bottom: 4px;    margin-right: 4px;    margin-left: 4px;}table{    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    border-collapse: collapse;}th {    font-weight:bold;    padding: 4px;    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    vertical-align:top;    text-align:left;    font-size:78%;}td {    padding: 4px;    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    vertical-align:top;    font-size:78%;}a {    color:#013C9A;    text-decoration:none;}a:visited {    color:#013C9A;}a:hover, a:active {    text-decoration:underline;    color:#5BAFD4;}.pass{background-color: #00ff00;}.fail{background-color: #ff0000;}.comment{    font-size: 90%;    font-style: italic;}
+-->
+</STYLE>
+</HEAD>
+<PRE><A name="pn170727130134"></A><B><U><big>pn170727130134</big></U></B>
+#Start recording tcl command: 7/25/2017 21:29:37
+#Project Location: C:/Users/chamberlin/Documents/Liron/lattice; Project name: liron
+prj_project new -name "liron" -impl "fpgatop" -dev LAMXO256C-3TN100E -synthesis "lse"
+prj_project save
+prj_src add "C:/Users/chamberlin/Documents/Liron/lattice/top.v"
+prj_src add "C:/Users/chamberlin/Documents/Liron/lattice/addrDecoder.v"
+prj_src add "C:/Users/chamberlin/Documents/Liron/lattice/iwm.v"
+prj_run Synthesis -impl fpgatop
+prj_run Map -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop -task PARTrace
+prj_dev set -part LCMXO2-640HC-4TG100C
+prj_run PAR -impl fpgatop
+prj_dev set -part LAMXO256C-3TN100E
+prj_run PAR -impl fpgatop
+prj_dev set -part LCMXO2-640HC-4SG48C
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_dev set -part LCMXO2-640HC-4TG100C
+prj_src add -exclude "C:/Users/chamberlin/Documents/Liron/lattice/fpgatop/fpgatop.xcf"
+prj_src enable "C:/Users/chamberlin/Documents/Liron/lattice/fpgatop/fpgatop.xcf"
+pgr_project close
+prj_src add "C:/Users/chamberlin/Documents/Liron/lattice/codeROM.v"
+prj_run PAR -impl fpgatop
+prj_src add "C:/Users/chamberlin/Documents/Liron/lattice/codeROM.ipx"
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_src remove "C:/Users/chamberlin/Documents/Liron/lattice/codeROM.v"
+prj_run PAR -impl fpgatop
+prj_src add "C:/Users/chamberlin/Documents/Liron/lattice/spiFlash.ipx"
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_src remove "C:/Users/chamberlin/Documents/Liron/lattice/spiFlash.ipx"
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+#Stop recording: 7/27/2017 13:01:34
+
+
+
+<A name="pn170727162731"></A><B><U><big>pn170727162731</big></U></B>
+#Start recording tcl command: 7/27/2017 13:02:05
+#Project Location: C:/Users/chamberlin/Documents/Liron/lattice; Project name: liron
+prj_project open "C:/Users/chamberlin/Documents/Liron/lattice/liron.ldf"
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+pwc_command new
+pwc_command save -project "C:/Users/chamberlin/Documents/Liron/lattice/power-estimate.pcf"
+prj_src add -exclude "C:/Users/chamberlin/Documents/Liron/lattice/power-estimate.pcf"
+pwc_command save -project "C:/Users/chamberlin/Documents/Liron/lattice/power-estimate.pcf"
+prj_run PAR -impl fpgatop
+pwc_command exit
+pwc_command new
+prj_project save
+prj_project close
+#Stop recording: 7/27/2017 16:27:31
+
+
+
+<A name="pn170808144313"></A><B><U><big>pn170808144313</big></U></B>
+#Start recording tcl command: 7/28/2017 10:04:36
+#Project Location: C:/Users/chamberlin/Documents/Liron/lattice; Project name: liron
+prj_project open "C:/Users/chamberlin/Documents/Liron/lattice/liron.ldf"
+prj_dev set -part LCMXO2-1200HC-4TG100C
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+pgr_project open "C:/Users/chamberlin/Documents/Liron/lattice/fpgatop/fpgatop.xcf"
+prj_run PAR -impl fpgatop
+pgr_project close
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+#Stop recording: 8/8/2017 14:43:13
+
+
+
+<A name="pn171208101159"></A><B><U><big>pn171208101159</big></U></B>
+#Start recording tcl command: 12/7/2017 14:57:57
+#Project Location: C:/Users/chamberlin/Documents/Liron/lattice; Project name: liron
+prj_project open "C:/Users/chamberlin/Documents/Liron/lattice/liron.ldf"
+#Stop recording: 12/8/2017 10:11:59
+
+
+
+<A name="pn180117140835"></A><B><U><big>pn180117140835</big></U></B>
+#Start recording tcl command: 1/17/2018 14:08:10
+#Project Location: C:/Users/chamberlin/Documents/Liron/lattice; Project name: liron
+prj_project open "C:/Users/chamberlin/Documents/Liron/lattice/liron.ldf"
+prj_project close
+#Stop recording: 1/17/2018 14:08:35
+
+
+
+<A name="pn180208150255"></A><B><U><big>pn180208150255</big></U></B>
+#Start recording tcl command: 2/8/2018 14:57:30
+#Project Location: C:/Users/chamberlin/Documents/Liron/lattice; Project name: liron
+prj_project open "C:/Users/chamberlin/Documents/Liron/lattice/liron.ldf"
+pgr_project open "C:/Users/chamberlin/Documents/Liron/lattice/fpgatop/fpgatop.xcf"
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_project save "C:/Users/chamberlin/Documents/Liron/lattice/fpgatop/fpgatop.xcf"
+prj_project close
+#Stop recording: 2/8/2018 15:02:55
+
+
+
+<A name="pn180214123353"></A><B><U><big>pn180214123353</big></U></B>
+#Start recording tcl command: 2/8/2018 15:05:17
+#Project Location: C:/Users/chamberlin/Documents/Liron/lattice; Project name: liron
+C:/Users/chamberlin/Documents/Liron
+yellowstone_blink
+#Start recording tcl command: 2/14/2018 12:33:53
+#Project Location: C:/Users/chamberlin/Documents/Liron; Project name: yellowstone_blink
+prj_project open "C:/Users/chamberlin/Documents/Liron/lattice/liron.ldf"
+pgr_project open "C:/Users/chamberlin/Documents/Liron/lattice/fpgatop/fpgatop.xcf"
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pwc_command new
+pwc_command exit
+prj_run Export -impl fpgatop
+pgr_program run
+pgr_program run
+prj_run Export -impl fpgatop
+prj_run Export -impl fpgatop
+pgr_project save "C:/Users/chamberlin/Documents/Liron/lattice/fpgatop/fpgatop.xcf"
+pgr_project close
+pgr_project open "C:/Users/chamberlin/Documents/Liron/lattice/fpgatop/fpgatop.xcf"
+pgr_program run
+prj_run Export -impl fpgatop
+pgr_program run
+prj_run Export -impl fpgatop
+prj_run Export -impl fpgatop
+prj_run Export -impl fpgatop
+pgr_program run
+prj_run Export -impl fpgatop
+pgr_program run
+prj_run Export -impl fpgatop
+pgr_program run
+pgr_project save "C:/Users/chamberlin/Documents/Liron/lattice/fpgatop/fpgatop.xcf"
+prj_project save
+prj_project close
+prj_project open "C:/Users/chamberlin/Documents/Liron/yellowstone_blink.ldf"
+#Stop recording: 2/14/2018 12:33:53
+
+
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</PRE></FONT>
+</BODY>
+</HTML>

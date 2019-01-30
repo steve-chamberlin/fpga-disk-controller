@@ -1,0 +1,26 @@
+PAR: Place And Route Diamond (64-bit) 3.9.0.99.2.
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights reserved.
+Thu Feb 22 10:56:39 2018
+
+C:/lscc/diamond/3.9_x64/ispfpga\bin\nt64\par -f liron_fpgatop.p2t
+liron_fpgatop_map.ncd liron_fpgatop.dir liron_fpgatop.prf -gui -msgset
+C:/Users/chamberlin/Documents/Liron/lattice/promote.xml
+
+
+Preference file: liron_fpgatop.prf.
+
+Level/       Number       Worst        Timing       Worst        Timing       Run          NCD
+Cost [ncd]   Unrouted     Slack        Score        Slack(hold)  Score(hold)  Time         Status
+----------   --------     -----        ------       -----------  -----------  ----         ------
+5_1   *      0            -            -            -            -            05           Complete
+
+
+* : Design saved.
+
+Total (real) run time for 1-seed: 5 secs 
+
+par done!

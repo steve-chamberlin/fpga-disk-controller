@@ -1,0 +1,37 @@
+---------------------------------------------------
+Report for cell top
+   Instance path: top
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      58.00        100.0
+                                  LUT4	     113.00        100.0
+                                 IOBUF	         52        100.0
+                                PFUREG	         43        100.0
+                                   EBR	          4        100.0
+SUB MODULES
+                                  cell	      count    SLC Usage(%)
+                                   iwm	          1        92.2
+                               codeROM	          1         0.0
+                           addrDecoder	          1         2.9
+---------------------------------------------------
+Report for cell iwm
+   Instance path: top/myIwm
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      53.50        92.2
+                                  LUT4	     102.00        90.3
+                                PFUREG	         42        97.7
+---------------------------------------------------
+Report for cell codeROM
+   Instance path: top/myROM
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                   EBR	          4        100.0
+---------------------------------------------------
+Report for cell addrDecoder
+   Instance path: top/myAddrDecoder
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       1.67         2.9
+                                  LUT4	       3.00         2.7
+                                PFUREG	          1         2.3

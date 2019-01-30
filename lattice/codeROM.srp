@@ -1,0 +1,29 @@
+SCUBA, Version Diamond (64-bit) 3.9.0.99.2
+Tue Jan 30 17:35:12 2018
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights reserved.
+
+    Issued command   : C:\lscc\diamond\3.9_x64\ispfpga\bin\nt64\scuba.exe -w -n codeROM -lang verilog -synth lse -bus_exp 7 -bb -arch xo2c00 -type romblk -device LCMXO2-1200HC -addr_width 12 -data_width 8 -num_words 4096 -outdata REGISTERED -cascade 11 -resetmode SYNC -sync_reset -memfile c:/users/chamberlin/documents/liron/rom-full-4k.mem -memformat hex 
+    Circuit name     : codeROM
+    Module type      : EBR_ROM
+    Module Version   : 5.4
+    Ports            : 
+	Inputs       : Address[11:0], OutClock, OutClockEn, Reset
+	Outputs      : Q[7:0]
+    I/O buffer       : not inserted
+    Memory file      : c:/users/chamberlin/documents/liron/rom-full-4k.mem
+    EDIF output      : codeROM.edn
+    Verilog output   : codeROM.v
+    Verilog template : codeROM_tmpl.v
+    Verilog testbench: tb_codeROM_tmpl.v
+    Verilog purpose  : for synthesis and simulation
+    Bus notation     : big endian
+    Report output    : codeROM.srp
+    Element Usage    :
+          DP8KC : 4
+    Estimated Resource Usage:
+            EBR : 4

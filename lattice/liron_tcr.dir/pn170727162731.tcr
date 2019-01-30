@@ -1,0 +1,21 @@
+#Start recording tcl command: 7/27/2017 13:02:05
+#Project Location: C:/Users/chamberlin/Documents/Liron/lattice; Project name: liron
+prj_project open "C:/Users/chamberlin/Documents/Liron/lattice/liron.ldf"
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+prj_run PAR -impl fpgatop
+pwc_command new
+pwc_command save -project "C:/Users/chamberlin/Documents/Liron/lattice/power-estimate.pcf"
+prj_src add -exclude "C:/Users/chamberlin/Documents/Liron/lattice/power-estimate.pcf"
+pwc_command save -project "C:/Users/chamberlin/Documents/Liron/lattice/power-estimate.pcf"
+prj_run PAR -impl fpgatop
+pwc_command exit
+pwc_command new
+prj_project save
+prj_project close
+#Stop recording: 7/27/2017 16:27:31

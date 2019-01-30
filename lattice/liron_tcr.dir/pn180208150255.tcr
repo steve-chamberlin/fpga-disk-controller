@@ -1,0 +1,12 @@
+#Start recording tcl command: 2/8/2018 14:57:30
+#Project Location: C:/Users/chamberlin/Documents/Liron/lattice; Project name: liron
+prj_project open "C:/Users/chamberlin/Documents/Liron/lattice/liron.ldf"
+pgr_project open "C:/Users/chamberlin/Documents/Liron/lattice/fpgatop/fpgatop.xcf"
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_project save "C:/Users/chamberlin/Documents/Liron/lattice/fpgatop/fpgatop.xcf"
+prj_project close
+#Stop recording: 2/8/2018 15:02:55

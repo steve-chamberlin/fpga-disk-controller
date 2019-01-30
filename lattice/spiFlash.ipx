@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DiamondModule name="spiFlash" module="spiFlash" VendorName="Lattice Semiconductor Corporation" generator="IPexpress" date="2017 07 27 11:56:37.798" version="1.2" type="Module" synthesis="lse" source_format="Verilog HDL">
+  <Package>
+		<File name="spiFlash.lpc" type="lpc" modified="2017 07 27 11:56:35.971"/>
+		<File name="spiFlash.v" type="top_level_verilog" modified="2017 07 27 11:56:36.033"/>
+		<File name="spiFlash_tmpl.v" type="template_verilog" modified="2017 07 27 11:56:36.033"/>
+  </Package>
+</DiamondModule>

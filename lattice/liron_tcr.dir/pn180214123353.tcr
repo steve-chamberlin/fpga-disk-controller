@@ -1,0 +1,39 @@
+#Start recording tcl command: 2/8/2018 15:05:17
+#Project Location: C:/Users/chamberlin/Documents/Liron/lattice; Project name: liron
+C:/Users/chamberlin/Documents/Liron
+yellowstone_blink
+#Start recording tcl command: 2/14/2018 12:33:53
+#Project Location: C:/Users/chamberlin/Documents/Liron; Project name: yellowstone_blink
+prj_project open "C:/Users/chamberlin/Documents/Liron/lattice/liron.ldf"
+pgr_project open "C:/Users/chamberlin/Documents/Liron/lattice/fpgatop/fpgatop.xcf"
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pgr_program run
+pwc_command new
+pwc_command exit
+prj_run Export -impl fpgatop
+pgr_program run
+pgr_program run
+prj_run Export -impl fpgatop
+prj_run Export -impl fpgatop
+pgr_project save "C:/Users/chamberlin/Documents/Liron/lattice/fpgatop/fpgatop.xcf"
+pgr_project close
+pgr_project open "C:/Users/chamberlin/Documents/Liron/lattice/fpgatop/fpgatop.xcf"
+pgr_program run
+prj_run Export -impl fpgatop
+pgr_program run
+prj_run Export -impl fpgatop
+prj_run Export -impl fpgatop
+prj_run Export -impl fpgatop
+pgr_program run
+prj_run Export -impl fpgatop
+pgr_program run
+prj_run Export -impl fpgatop
+pgr_program run
+pgr_project save "C:/Users/chamberlin/Documents/Liron/lattice/fpgatop/fpgatop.xcf"
+prj_project save
+prj_project close
+prj_project open "C:/Users/chamberlin/Documents/Liron/yellowstone_blink.ldf"
+#Stop recording: 2/14/2018 12:33:53

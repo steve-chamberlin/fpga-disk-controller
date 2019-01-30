@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliProject version="3.2" title="yellowstone_blink" device="LCMXO2-1200HC-4TG100C" default_implementation="yellowstone_blink">
+    <Options/>
+    <Implementation title="yellowstone_blink" dir="yellowstone_blink" description="yellowstone_blink" synthesis="lse" default_strategy="Strategy1">
+        <Options def_top="blink"/>
+        <Source name="top.v" type="Verilog" type_short="Verilog">
+            <Options top_module="blink"/>
+        </Source>
+        <Source name="yellowstone_blink.lpf" type="Logic Preference" type_short="LPF">
+            <Options/>
+        </Source>
+        <Source name="yellowstone_blink/yellowstone_blink.xcf" type="Programming Project File" type_short="Programming">
+            <Options/>
+        </Source>
+    </Implementation>
+    <Strategy name="Strategy1" file="yellowstone_blink1.sty"/>
+</BaliProject>

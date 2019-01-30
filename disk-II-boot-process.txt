@@ -1,0 +1,817 @@
+******************************************************************
+*                                                                *
+*                       THE BOOT PROCESS                         *
+*                                                                *
+******************************************************************
+*                                                                *
+*      The following disassembly describes the boot process for  *
+* a slave disk.  In order to TRULY understand this listing, you  *
+* should first be familiar with the exact sequence and coding of *
+* disk bytes used in track formatting.  This information can be  *
+* found in chapter 3 of the book BENEATH APPLE DOS.  (The        *
+* distinctions between booting a slave disk versus a master disk *
+* are described in chapter 8 of the same reference.)             *
+*      The boot process loads DOS into the machine as a series   *
+* of discrete packages.  After each package is loaded, it is     *
+* executed to load in the next section of DOS.  The last         *
+* instruction of the boot process jumps into DOS's coldstart     *
+* routine to build the DOS buffers, set up the page-three vector *
+* table and run the "HELLO" program.                             *
+*      Because DOS is loaded in stages, any protected disk can   *
+* cracked by tracing the boot.  If you modify each section of    *
+* the boot to stop after loading the next section, you can       *
+* inspect the different stages of the boot to discover the       *
+* protection scheme(s) used.  (P.S.  In order to modify BOOT0,   *
+* you must first move it down to a RAM location defined by:      *
+* $hs00, where h = high nibble of an address that is low enough  *
+* to accomodate DOS in free memory above and, s = present slot   *
+* number housing the disk controller card.)                      *
+*                                                                *
+******************************************************************
+
+
+
+
+*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*
+*                                                                *
+*                        BOOT 0                                  *
+*                                                                *
+*----------------------------------------------------------------*
+*                                                                *
+* - relocatable code resident on the disk controller's ROM.      *
+* - because the code is relocatable, the disk controllers card   *
+*   can be used in different slots.  Execution begins at $Cs00,  *
+*   where s = slot number (ex. $C600 for card in slot 6).        *
+* - When BOOT0 is executed it:                                   *
+*       (1) builds a table of indices which are used to convert  *
+*           the disk bytes into 6/2 encoded bytes which are      *
+*           needed by RWTS to translate the disk bytes into      *
+*           normal memory bytes.                                 *
+*       (2) recalibrates the disk arm by moving it to trk0/sec0. *
+*       (3) reads BOOT1 into $800 to $8FF (from trk0/sec0).      *
+*       (4) jumps to $801 to begin the execution of BOOT1.       *
+*                                                                *
+*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*
+
+(Cs00)
+BOOT0    LDX #$20     ;Controller card's identification byte.
+
+* Construct a read-translate table which
+* we will need to convert disk bytes to
+* encoded memory bytes.  (The encoded memory
+* bytes later go trough further decoding to
+* convert them to normal memory bytes.)
+*
+* We construct the table by sequentially
+* incrementing (x) and testing it to see
+* if it meets the folowing criteria of a
+* disk byte:
+*   (1) it must have at least one pair of
+*       adjacent 1's in bits 0 to 6.
+*   (2) it must not have more than one pair
+*       of adjacent 0's in bits 0 to 6.
+* (Note that we use the x-value to represent
+* only the lower seven bits of a disk byte
+* because all disk bytes are negative.)
+*
+* Each time we find an (x) that represents
+* a simulated disk byte, we increment (y).
+* (Y) is then placed in the read table at an
+* offset of (x) from the beginning of the table.
+* The table generated is shown below.  The
+* empty bytes represent offsets where (x)
+* did not meet the criteria of a disk byte.
+* The values in parentheses represent the
+* (x)-values tested.
+*      36C-    00   01   --   --
+*             (16) (17) (18) (19)
+*      370-    02   03   --   04   05   06   --  --
+*             (1A) (1B) (1C) (1D) (1E) (1F) (20) (21)
+*      378-    --   --   --   --   07   08   --   --
+*             (22) (23) (24) (25) (26) (27) (28) (29)
+*      380-    --   09   0A   0B   0C   0D   --   --
+*             (2A) (2B) (2C) (2D) (2E) (2F) (30) (31)
+*      388-    0E   0F   10   11   12   13   --   14
+*             (32) (22) (34) (35) (36) (37) (38) (39)
+*      390-    15   16   17   18   19   1A   --   --
+*             (3A) (3B) (3C) (3D) (3E) (3F) (40) (41)
+*      398-    --   --   --   --   --   --   --   --
+*             (42) (43) (44) (45) (46) (47) (48) (49)
+*      3A0-    --   1B   --   1C   1D   1E   --   --
+*             (4A) (4B) (4C) (4D) (4E) (4F) (50) (51)
+*      3A8-    --   1F   --   --   20   21   --   22
+*             (52) (53) (54) (55) (56) (57) (58) (59)
+*      3B0-    23   24   25   26   27   28   --   --
+*             (5A) (5B) (5C) (5D) (5E) (5F) (60) (61)
+*      3B8-    --   --   --   29   2A   2B   --   2C
+*             (62) (63) (64) (65) (66) (67) (68) (69)
+*      3C0-    2D   2E   2F   30   31   32   --   --
+*             (6A) (6B) (6C) (6D) (6E) (6F) (70) (71)
+*      3C8-    33   34   35   36   37   38   --   39
+*             (72) (73) (74) (75) (76) (77) (78) (79)
+*      3D0-    3A   3B   3C   3D   3E   3F   --   --
+*             (7A) (7B) (7C) (7D) (7E) (7F)
+
+
+(Cs02)   LDY #0       ;Initialize the (y) index.
+(Cs04)   LDX #3       ;"3" is used for controller ID.  Any number
+                      ;between 0 and #$16 could be used.  Except
+                      ;for ID purposes, the operand isn't even
+                      ;relevant until it is #$16 (dec #22).
+BUILDTBL STX BT0SCRTH ;Save potential index seed in the zero page.
+(Cs06)
+
+* Transfer (x) to (a) and test to see if it
+* meets the following disk byte criteria:
+*  (1) has at least one pair of adjacent 1's
+*      in bits 0 to 6.
+*  (2) has no more than one pair of adjacent
+*      0's in bits 0 to 6.
+
+* Test for adjacent 1's.
+*
+* Note:  by comparing a shifted version of
+* the seed (in accumulator) with the original
+* version of the seed (in BT0SCRTH, $3C) we are
+* actually testing adjacent bits as shown below:
+*        Shifted:  b6   b5   b4   b3   b2   b1  b0   0
+*        Orignal:  b7   b6   b5   b4   b3   b2  b1  b0
+*                  -----------------------------------
+*        Testing: b6,7 b5,6 b4,5 b3,4 b2,3 b1,2 b0,1 -
+
+(Cs08)   TXA
+         ASL
+(Cs0A)   BIT BT0SCRTH ;Conditions the z-flag of the status.
+                      ;(If any bits match, z-flag=1.)
+(Cs0C)   BEQ GETNEWX  ;Branch if value was illegal.
+                      ;Illegal value = z-flag=1 = no match = no
+                      ;adjacent 1's.
+
+* Got at least 1 pair of adjacent 1's, so
+* now prepare to test for adjacent 0's.
+* (Note:  the previous "BIT" instruction
+* alters the z-flag in the status but
+* does not affect the accumulator.)
+(Cs0E)   ORA BT0SCRTH ;Merge shifted version of seed with orig.
+(Cs10)   EOR #$FF     ;Take 1's compliment of shifted version to
+                      ;swap 1's for 0's and 0's for 1's.
+(Cs12)   AND #%01111110 ;Throw away the hi and least significant
+                      ;bits so will be testing:
+                      ;    b5,6  b4,5  b3,4  b2,3 b1,2 b0,1.
+
+* Test for pairs of adjacent 0's.
+* Remember, only 1 pair of adjacent 0's is
+* allowed.  Because we did a 1's compliment
+* of the merged bits above, a SET BIT NOW
+* DENOTES A PAIR OF ADJACENT 0's.  We can
+* therefore test for a pair of adjacent 0's
+* by shifting a bit into the carry:
+*  - if (c) = 1 = at least one pair of adjacent 0's
+*    is present.
+*  - if (c) = 1 AND the remaining byte = 0 then
+*    we have only one pair of adjacent 0's so
+*    value is legal.
+*  - if (c) = 1 AND the remaining byte < > 0, we
+*    have more than one pair of adjacent 0's so
+*    value is illegal.
+(Cs14)
+TESTCARY BCS GETNEWX  ;Always fall through on very first entry.
+                      ;If branch is taken, got illegal value
+                      ;because more than 1 pr of adjacent 0's.
+(Cs16)   LSR          ;Shift a bit into the carry (if carry set
+                      ;have at least 1 pr of adjacent 0's).
+(Cs17)   BNE TESTCARY ;Take branch when remaining byte is not
+                      ;zero.  Got at least 1 pr of adjacent 0's.
+                      ;Go test carry to see if another pair has
+                      ;already been detected.
+
+* Index byte was legal.  We either got no
+* adjacent 0's or else only one pair of
+* adjacent 0's.
+(Cs19)   TYA          ;Store the counter that corresponds to a
+(Cs1A)   STA BTNIBL-$16,X ;legal nibble.  The first (x) value used
+                      ;is #$16, last is #$7F.  The first (y) value
+                      ;stored is 0, the last is #$3F.
+(Cs1D)   INY
+GETNEWX  INX
+(Cs1F)   BPL BUILDTBL ;Keep on trying to build table until (x)
+                      ;increments to #$80.
+
+* Find out which slot the disk controller
+* card resides in.
+(Cs21)   JSR MONRTS   ;Jsr to an RTS to put the present address on
+                      ;the stack.  The hi byte of the present addr
+                      ;($Cs) tells us what slot (s) the card is
+                      ;located in.
+
+                      * An RTS instruction in monitor ROM.
+                      (FF58)
+                      MONRTS   RTS
+
+(Cs24)   TSX          ;Put the value of the stack pointer in (x).
+(Cs25)   LDA STACK,X  ;Get the hi byte of the controllers address
+                      ;($Cs) from the stack.
+(Cs28)   ASL          ;Multiply by 16 (throwing away original hi
+         ASL          ;nibble) so we are left with #$s0.
+         ASL
+         ASL          ;(a) = slot * 16.
+         STA SLT16ZPG ;Save slot*16 in a zero-page location.
+(Cs2E)   TAX          ;Set (x) = slot * 16 so we can index the
+                      ;base addresses associated with the drive
+                      ;functions.
+(Cs2F)   LDA Q7L,X    ;Set the READ mode.
+         LDA Q6L,X
+         LDA SELDRV1  ;Select drive 1.
+(Cs38)   LDA MTRON,X  ;Spin the disk.
+
+* Move disk arm to track 0 by doing a
+* recalibration.  (That is, force the arm
+* against the stop by pretending that it
+* is presently at trk decimal 40.)
+* (The arm is moved by sequentially turning
+* a series of magnets off and on.)
+(Cs3B)   LDY #80      ;Pretend arm is at trk40 (dec 80 half-trks).
+MAGNTOFF LDA MAG0FF,X ;Turn the presently aligned magnet off.
+(Cs40)   TYA          ;Calculate the next magnet that should be
+                      ;turned on to suck the arm over.
+(Cs41)   AND #%00000011 ;Only keep the lower two bits because we
+                      ;only want a maximum value of 3 because
+                      ;there are only 4 magnets (which are indexed
+                      ;by values 0 to 3).  The sequence used in
+                      ;this loop is: 3,2,1,0,3...
+(Cs43)   ASL          ;Multiply by 2 so the index is directed to
+                      ;an address that turns a magnet ON.  The
+                      ;sequence used is:  6,4,2,0,6...0.
+(Cs44)   ORA SLT16ZPG ;Merge the index with the slot * 16 value.
+         TAX          ;Put the calculated index in (x).
+         LDA MAG0N,X  ;Turn the appropriate magnet ON.
+(Cs4A)   LDA #$56     ;Delay approximately 20 000 machine cycles
+                      ;(approximately 20 milliseconds.)  (Gives 
+(Cs4C)   JSR WAIT     ;arm time to align with energized magnet
+                      ;and reduces overshoot or bounce.)
+
+                      * Monitor ROM's main delay routine.
+                      * Delay z number of cycles based on
+                      * the formula:
+                      *    z = ((5 * a^2) + (27 * a) +26) / 2
+                      *    where a = value in the accumulator on entry.
+                      (FCA8)
+                      WAIT     SEC          ;Prepare for subtraction.
+                      WAIT2    PHA          ;Save (a) on the stack.
+                      WAIT3    SBC #1       ;Keep on reducing (a) until it equals 0.
+                               BNE WAIT3
+                               PLA
+                               SBC #1       ;Reduce the original (a) down to 0 again.
+                               BNE WAIT2
+                      (FCB3)   RTS
+
+(Cs4F)   DEY          ;Reduce trk # count.
+(Cs50)   BPL MAGNTOFF ;Not at trk0 yet, so go move arm some more.
+
+* Initialize the buffer pointer and trk/sec values.
+* (On entry:  (x) = slot *16, (y) = #$FF & (a) = $00.)
+(Cs52)   STA PT2BTBUF ;Set the low byte of the buf pointer to $00.
+         STA BOOTSEC  ;Initialize for sector 0 on track 0.
+         STA BOOTRK
+         LDA #8       ;Set the hi byte of the buf pointer to $08
+(Cs5A)   STA PT2BTBUF+1 ;(that is, direct pointer at $800).
+
+* Prepare to start reading a prologue.
+(Cs5C)
+BTRDSEC  CLC          ;(c) = 0 = signal to read an addr prologue.
+
+* Begin reading a prologue.
+(Cs5D)
+PRSRVFLG PHP          ;Preserve the status denoting if reading
+                      ;address ((c)=0) or data ((c)=1) prologue.
+
+* Look for an address prologue ("D5 AA 96")
+* or a data prologue ("D5 AA AD").
+(Cs5E)
+STARTSEQ LDA Q6L,X    ;Read a disk byte.
+         BPL STARTSEQ ;Wait for a full byte.
+BTRYD5   EOR #$D5     ;Is it a "D5"?
+         BNE STARTSEQ ;No - restart sequence.
+BTRYAA   LDA Q6L,X    ;Read next byte in header.
+         BPL BTRYAA   ;Wait for a full byte.
+         CMP #$AA     ;Is it an "AA"?
+         BNE BTRYD5   ;No - restart sequence.
+         NOP          ;Delay 2 cycles.
+BTRY96   LDA Q6L,X    ;Read third byte in header.
+         BPL BTRY96   ;Wait for a full byte.
+         CMP #$96     ;Is it a "96"?
+Cs78)    BEQ RDVLTKSC ;Found an address prologue, so now go read
+                      ;the vol, trk, sec values in the header.
+
+* The first two bytes were "D5 AA".
+* The 3rd byte was not "96".  Therefore,
+* although we know this isn't an address
+* prologue, maybe it is a data prologue.
+(Cs7A)   PLP          ;Get the status back off the stack so we can
+                      ;check if we were looking for an address or
+                      ;data prologue.
+(Cs7B)   BCC BTRDSEC  ;Branch back to try again if we were looking
+                      ;for an address prologue but didn't find it.
+
+* We were looking for a data prologue so
+* now compare the 3rd byte with that of a
+* data prologue.
+(Cs7D)
+BTRYAD   EOR #$AD     ;Is it an "AD"?
+         BEQ RDBTDATA ;Yes - found data prol so now read in data.
+(Cs81)   BNE BTRDSEC  ;No - go try again to find sequence 4 data.
+
+* Read volume, track and sector values in
+* the address header.
+* Remember, @ of these pieces of information
+* are housed in two bytes in an odd-even encoded
+* format:   1rst byte:   1 b7  1 b5  1 b3  1 b1  (odd-encoded).
+*            2nd byte:   1 b6  1 b4  1 b2  1 b1  (even-encoded).
+* We must decode these bytes to check if we located
+* the correct volume, track and sector.
+(Cs83)
+RDVLTKSC LDY #3       ;Set counter for 3 decoded bytes.
+MOREBYTS STA BOOTEMP  ;Only relevant the last time through the
+(Cs85)                ;loop at which time it contains the decoded
+(Cs87)                ;track number read off the disk.
+BTRDODD  LDA Q6L,X    ;Read odd-encoded byte.
+         BPL BTRDODD  ;Wait for a full byte.
+(Cs8C)   ROL          ;Throw away the hi bit & shift the odd bits
+                      ;to their regular position.
+(Cs8D)   STA BT0SCRTH ;Save realigned version of odd-encoded byte.
+BTRDEVEN LDA Q6L,X    ;Read the even-encoded byte.
+         BPL BTRDEVEN ;Wait for a full byte.
+         AND BT0SCRTH ;Merge the two bytes.
+         DEY          ;Reduce counter for # of bytes to rebuild.
+         BNE MOREBYTS ;Branch if more bytes to patch back together.
+         PLP          ;Throw the status on the stack away.
+         CMP BOOTSEC  ;Is the sector read = sector wanted?
+         BNE BTRDSEC  ;No - go back to find correct sector.
+         LDA BOOTEMP  ;Get decoded trk # just read off disk.
+         CMP BOOTRK   ;Is trk found = trk wanted?
+         BNE BTRDSEC  ;No - go back to try again.
+(CsA4)   BCS PRSRVFLG ;ALWAYS - just read addr field, so now go
+                      ;         read the data prologue.
+
+* Read the sector's data bytes.
+
+* Read the first 86 ($56) bytes of the sector.  Use
+* the disk byte as an index to the BTNIBL table ($36C-$3D5).
+* Get the value from BTNIBL table & EOR it with the
+* previous EOR result (except on entry, use
+* #0 EOR BTNIBL-$96,Y) to produce a 2-encoded nibble.
+* (On entry, (a) = 0.)
+(CsA6)
+BTRDATA  LDY #$56     ;Read $56 (dec #86) bytes.
+KEEPCNT1 STY BT0SCRTH ;Save the counter.
+RDDSK1   LDY Q6L,X    ;Read a disk data byte.
+         BPL RDDSK1   ;Wait for a full byte.
+(CsAF)   EOR BTNIBL-$96,Y ;Use disk byte as an index to the table
+                      ;and EOR to decode to a 2-encoded nibble.
+(CsB2)   LDY BT0SCRTH ;Retrieve the counter.
+         DEY          ;Reduce the counter (& condition z-flag).
+         STA BUF300,Y ;Store 2-encoded nibble in page 3 buffer.
+(CSB8)   BNE KEEPCNT1 ;Branch if more bytes to read.
+
+* Read the rest of the sector (256 disk bytes
+* remaining).  Use disk byte as an index to BTNIBL
+* table.  Get value from nibble table and EOR it
+* with previous EOR result to yeild a 6-encoded
+* nibble.  (On entry, (y) = 0.)
+(CsBA)
+KEEPCNT2 STY BT0SCRTH ;Set disk byte counter = 0.
+RDDSK2   LDY Q6L,X    ;Read a disk byte.
+         BPL RDDSK2   ;Wait for a full byte.
+(CsC1)   EOR BTNIBL-$96,Y ;Use disk byte as an index to the nibble
+                      ;table and EOR it with previous result to
+                      ;produce a 6-encoded nibble.
+(CsC4)   LDY BT0SCRTH ;Get index to buffer.
+         STA (PT2BTBUF),Y ;Store 6-encoded nibble in buffer.
+         INY          ;Kick up offset into buffer.
+(CsC9)   BNE KEEPCNT2
+
+* Read and test the data checksum.
+* On entry, (a) = result of previous cummulative
+* EORing.  Therefore, any non-cancelling errors are
+* detected at the BNE instruction below.
+(CsCB)
+RDCK     LDY Q6L,X    ;Read the data checksum.
+         BPL RDCK     ;Wait for a full byte.
+(CsD0)   EOR BTNIBL-$96,Y ;EOR byte read with the previous
+                      ;cummulative result.
+TSTRERD  BNE BTRDSEC  ;Bad checksum so branch back to re-read.
+(CsD3)                ;(Also branches to here if got a good read
+                      ;but there are more sectors to read if the
+                      ;first byte of BOOT1 is modified to allow
+                      ;BOOT0 to read more than 1 sector (see
+                      ;comments below).
+
+* Convert 6-and-2 encoded buffer bytes to
+* normal 8-bit memory bytes.
+(CsD5)   LDY #0       ;Initialize index to target memory byte.
+SETX56   LDX #$56     ;Set index to buf containing encoded bytes.
+DOWNX    DEX          ;Reduce index for next buffer byte.
+         BMI SETX56   ;Reset index to encoded buffer.
+         LDA (PT2BTBUF),Y ;Get (a) = 6-encoded nibble.
+         LSR BUF300,Y ;Put a bit from the 2-encoded buffer in (c)
+         ROL          ;and then roll it into the 6-encoded nibble.
+         LSR BUF300,Y ;Do the same with the next bit of the pair.
+         ROL
+         STA (PT2BTBUF),Y ;Store the re-constructed 8-bit byte in memory.
+         INY          ;Increase the offset to the buffer.
+(CsE9)   BNE DOWNX    ;Branch back if more bytes to reconstruct.
+
+* Prepare to read in the next sector.
+* NOTE:  Normaly only trk0/sec0 (which
+* represents BOOT1) is read in by BOOT0.
+* The number of sectors read in by BOOT0 is
+* determined by the first byte of BOOT1.
+* Whereas BOOT1 resides in memory on an 48K
+* INITed disk at $B600 - $B6FF, we can zap a
+* disk at $B600 with the # of sectors we 
+* we would like BOOT0 to read in if we want
+* it to read in more than 1 sector.
+(CsEB)   INC PT2BTBUF+1 ;Just crossed page boundary, so kick up
+                      ;the hi byte of the target address.
+(CsED)   INC BOOTSEC  ;Set value for next sector wanted.
+         LDA BOOTSEC  ;Get next sector wanted.
+(CsF1)   CMP $800     ;Test if read enough sectors.
+                      ;First byte of image of BOOT1 normally
+                      ;contains #$01 which denotes only 1 sector
+                      ;(sec0/trk0) should be read in by BOOT0.
+(CsF4)   LDX SLT16ZPG ;(x) = slot *16.
+         BCC TSTRERD  ;Branch back to read more sectors.
+(CsF8)   JMP BT1EXC08 ;Jumps into BOOT1 (which was copied into
+         ------------ ;page 8 from trk0/sec0) to begin execution
+                      ;of BOOT1.
+
+
+*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*
+*                                                                *
+*                        BOOT 1                                  *
+*                                                                *
+*----------------------------------------------------------------*
+*                                                                *
+* - stored on trk0/sec0.                                         *
+* - IMAGE in memory on a 48K system resides at $B600 - $B6FF.    *
+* - read into $800 to $8FF by the disk controller ROM (BOOT0).   *
+* - execution begins at $801 & uses the controller's read sector *
+*   subroutine (BTRDSEC, Cs00, where s = slot # of card) to read *
+*   in trk0/sec9 down to trk0/sec1 ($BFFF --> $B600).            *
+* - NOTE:  In order to generate an accurate symbol table that    *
+*   can be applied 2 both the formatted & linear disassemblies,  *
+*   and because different assemblers vary in their abilities to  *
+*   accept certain OBJect values or re-ORG during assembly, the  *
+*   following special label system has been created:             *
+*   Image label/adr   Execution label/adr         Comments       *
+*   ---------------   -------------------   -------------------- *
+*   SEC2RDB6, $B600    SEC2RD08, $800      ;Defines # of secs to *
+*                                          ;be read in by boot0. *
+*   BT1EXCB6, $B601    BT1EXC08, $801      ;Start of boot1.      *
+*                                          ;Boot0 jumps to this  *
+*                                          ;location.            *
+*   SKPRELB6, $B61F    SKPREL08, $81F      ;Target labl 4 brnch. *
+*   PRP4B2B6, $B639    PRP4B208, $839      ;Target labl 4 brnch. *
+*     IMG8FD, $B6FD    BT1LDADR, $8FD      ;Boot1 load address.  *
+*                                          ;Varies from $B600 to *
+*                                          ;$BF00.  Eventually   *
+*                                          ;pts 2 start of boot2 *
+*                                          ;($B700).             *
+*     IMG8FF, $B6FF    BT1PG2RD, $8FF      ;Contains # of secs 2 *
+*                                          ;be read in when      *
+*                                          ;executing boot1. Also*
+*                                          ;doubles as logical   *
+*                                          ;sec #. Varies from:  *
+*                                          ;$09 --> $00 --> $FF. *
+* - As indicated above, SEC2RD08 ($800) defines the number of    *
+*   sectors to be read in by boot0.  This value is normally $01  *
+*   (meaning read only sector0 of track0).  However, you can zap *
+*   trk0/sec0/offset0 with a larger value ($01 to $10) to read   *
+*   more sectors from trk0.  Also note that most references say  *
+*   that SEC2RD08 normally contains a "$00" (rather than a       *
+*   "$01").  Because the test at $CsF6 uses the carry, either    *
+*   value will only cause one sector to be read in.  However,    *
+*   "$01" is the value used by DOS.  (Confusion may stem from    *
+*   the fact that Applesoft later stores a $00 in memory at      *
+*   $800.)                                                       *
+*                                                                *
+*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*
+
+
+(B600)  <============= image address.
+SEC2RDB6
+(800)  <============== execution address.
+SEC2RD08 HEX 01       ;Defines the number of sectors to be read
+                      ;in from track 0 during BOOT0.
+
+(B601)
+BT1EXCB6
+(801)
+BT1EXC08 LDA PT2BUF+1 ;Get the next page to read in.
+         CMP #$09     ;Is it page 9 (ie. first page read by BOOT1)?
+         BNE SKPREL08 ;No - already used by BOOT1 to read page 9,
+                      ;so skip pointer initialization given below.
+
+* Initialize the pointer (PT2RDSC) to point
+* at BOOT0's read sector subroutine (BTRDSEC,
+* $Cs5C, where s = slot #, normally $C65C).
+(B607)
+(807)    LDA SLT16ZPG ;(a) = slot *16.
+         LSR          ;Divide by 16.
+         LSR
+         LSR
+         LSR
+         ORA $C0      ;Merge with $C0 to get $Cs, where s=slot#.
+         STA PTR2RDSC+1 ;Store the hi byte of the address of the
+                      ;controller's read sector subroutine.
+         LDA #<BTRDSEC ;Get low byte of addr of subroutine.
+         STA PTR2RDSC ;Low byte is a constant (#$5C) and is
+                      ;therefore not variable with the slot used
+                      ;(as is the hi byte).
+
+* Read in the 9 sectors represented by
+* trk0/sec9 down to trk0/sec1 into
+* $BFFF to $B600.  Note that the sectors
+* are read in from higher to lower memory.
+* These sectors contain the IMAGE of BOOT1,
+* part of the File Manager and almost all
+* of RWTS and it's associated routines.
+
+* Calculate target address for the first sector
+* to be read in.
+(B615)
+(815)    CLC
+         LDA BT1LDADR+1 ;Contains $B6 on 48K slave.
+         ADC BT1PG2RD ;Contains #$09 on 48K slave.
+         STA BT1LDADR+1 ;(a) = #$BF on 48K slave.
+
+* Determine the number of sectors left to read,
+* the physical sector number & the target address.
+* Then, go read in the next sector.
+(B61F)
+SKPRELB6
+(81F)
+SKPREL08 LDX BT1PG2RD ;(x) = pages left to read in less 1.
+                      ;(Also doubles as logical sector number.
+                      ;Varies from $09 --> $FF.)
+         BMI PRP4B208 ;When (x) = $FF, we have read all the
+                      ;sectors in so go exit.
+         LDA PHYSECP8-$AE00,X ;Convert the logical sector number
+                      ;to a physical sector number. (Equivalent
+                      ;to "LDA $84D,X".)
+         STA BOOTSEC  ;Store physical sector number in page0.
+         DEC BT1PG2RD ;Reduce sectors (pages) left to read for
+                      ;the next time around.
+         LDA BT1LDADR+1 ;Point the buffer pointer at the target
+         STA PT2BTBUF+1 ;address. (Varies from $BF to $B6 on a
+                      ;48K slave.)
+         DEC BT1LDADR+1 ;Reduce the hi byte of the I/O buffer for
+                      ;the next time around. (Varies from $BF to
+                      ;$B5 on a 48K slave.)
+         LDX SLT16ZPG ;Set (x) = slot*16.
+(836)    JMP (PTR2RDSC) ;Equivalent to "JMP ($8FD)" or "JMP $Cs5C"
+(B636)   ------------ ;to go read in the next sector.
+                      ;***************** NOTE *******************
+                      ;* GOES TO BT1EXC08 ($801) AFTER @ SECTOR *
+                      ;* IS READ IN. (BT1EXCB6 is a carbon copy *
+                      ;* of BT1EXC08.)                          *
+                      ;******************************************
+
+* Prepare for BOOT2.
+(B639)
+PRP4B2B6
+(839)
+PRP4B208 INC BT1LDADR+1 ;Point at the load address for BOOT2.
+         INC BT1LDADR+1 ;(After the INCs = $B7 on 48K slave.)
+
+* Set full screen text & designate the
+* keyboard and screen as the I/O devices.
+(B63F)
+(83F)    JSR SETKBD   ;Simulate an IN#0.  (See dis'mbly below.)
+         JSR SETVID   ;Simulate an PR#0.  (See dis'mbly below.)
+         JSR INIT     ;Simulate a "TEXT" statement. (See dis'mbly
+                      ;in APPLE II REFERENCE MANUAL at $FB2F.)
+         LDX SLT16ZPG ;(x) = slot * 16.
+     
+* Go to BOOT2.
+(B64A)
+(84A)    JMP (BT1LDADR) ;Jump to BOOT2 ($B700 on 48K slave).
+         --------------
+
+
+*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*
+*                                                                *
+*                       BOOT2                                    *
+*                                                                *
+*----------------------------------------------------------------*
+*                                                                *
+* - Reads in the rest of DOS starting at trk02/sec04 down to     *
+*   trk00/sec0A ($B5FF --> $9B00).  (P.S. Sectors 0A and 0B of   *
+*   track 0 are empty ($9CFF - $9B00).)                          *
+* - After the rest of DOS is read in, execution jumps to DOS's   *
+*   coldstart routine (DOSCLD, $9D84).                           *
+* - Note that on entry:  (x) = slot * 16                         *
+*                                                                *
+*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*
+
+
+* Prepare RWTS's input-output block (IOB)
+* and designate the number of sectors to read.
+(B700)
+BOOT2    STX IBSLOT   ;(x) = slot*16 wanted.
+         STX IOBPSN   ;Last-used slot*16 value.
+         LDA #1       ;Set both the last-used and wanted drives
+         STA IOBDPDN  ;as drive #1.
+         STA IBDRVN
+         LDA NMPG2RD  ;Set number of pages (ie. secs) to read.
+         STA BT2PGCTR ;Counter for for number of pages to read.
+         LDA #2       ;Start with trk02/sec04.
+         STA IBTRK    ;Track.
+         LDA #4
+         STA IBSECT   ;Sector.
+(B71E)   LDY BT1MGADR+1 ;(y) = hi byte of the address of the image
+                      ;of BOOT1 (#$B6 on a 48K slave).
+(B721)   DEY          ;Define I/O buf as 1 page below boot1.
+         STY IBBUFP+1
+         LDA #1       ;Opcode for read.
+(B727)   STA IBCMD
+
+* Convert from (x) = slot*16 to (x) = slot.
+(B72A)   TXA          ;(x) = slot * 16.
+         LSR          ;Divide by 16.
+         LSR
+         LSR
+         LSR
+(B72F)   TAX          ;(x) = slot.
+
+* Initialize the page-four locations with
+* the track numbers associated with the drives.
+(B730)   LDA #0
+         STA TRK4DRV2,X
+(B735)   STA TRK4DRV1,X
+
+* Call the routine to read in the rest of DOS.
+(B738)   JSR RWPAGES
+
+                      * READ/write a group of pages.
+                      (B793)
+                      RWPAGES  LDA ADROFIOB+1 ;Init (a)/(y) with the hi/low bytes of the
+                               LDY ADROFIOB ;addr of RWTS's IOB for entry to RWTS.
+                      (B799)   JSR ENTERWTS ;Enter RWTS to read/write sector.
+
+                                            * Entry to RWTS.
+                                            (B7B5)
+                                            ENTERWTS PHP          ;Save status register on the stack.
+                                            (B7B6)   SEI          ;Set the interrupt disable flag to prevent
+                                                                  ;any further maskable interrupts when doing
+                                                                  ;real-time programming.
+                                            (B7B7)   JSR RWTS     ;Enter RWTS proper to do the operation:
+                                                                  ; $00=seek, $01=read, $02=write, $03=format.
+
+                                                                  * RWTS proper.
+                                                                  (BD00)
+                                                                  RWTS     .
+                                                                           .
+                                                                  (See dis'mbly in RWTSDRVR using READ.)
+                                                                           .
+                                                                           .
+                                                                           (RTS)
+
+                                            (B7BA)   BCS ERRENTER ;Operation was NOT successful.
+                                                     PLP          ;Retrieve saved status off the stack.
+                                            (B7BE)   RTS
+                                                     ============
+
+                                            (B7BF)
+                                            ERRENTER PLP          ;Throw the saved status off the stack.
+                                                     SEC          ;Signal operation was unsuccessful.
+                                            (B7C1)   RTS
+                                                     ============
+
+                      (B79C)   LDY IBSECT   ;Get # of the sector just read or written.
+                      (B79F)   DEY          ;Set value for next sector 2 read.  When
+                                            ;executing BOOT1, goes from $09 to $FF.
+                      (B7A0)   BPL SAMETRK  ;Branch to use the same track.
+
+                      * Start a new track.
+                      (B7A2)   LDY #$0F     ;Start with sector 15.
+                               NOP
+                               NOP
+                      (B7A6)   DEC IBTRK    ;Reduce number of track wanted.
+
+                      * Reduce the addr of the target memory location.
+                      * Test if more sectors to read.
+                      (B7A9)
+                      SAMETRK  STY IBSECT   ;Store the sector wanted.
+                               DEC IBBUFP+1 ;Reduce buf addr of target memory location.
+                               DEC BT2PGCTR ;Reduce counter for # of sectors to read.
+                               BNE RWPAGES  ;More sectors to read.
+                      (B7B4)   RTS
+
+(B73B)   LDX #$FF     ;Completely clear out the stack.
+         TXS
+         STX IBVOL    ;Set the volume to $FF (compliment of 0).
+(B741)   JMP CLOBCARD
+         ------------
+
+* Patch to clobber the language card
+* and set video output.
+(BFC8)
+CLOBCARD JSR SETVID   ;Select the video screen.
+
+                      * Monitor ROM's routine to designate the
+                      * video screen as the output device.
+                      * (Simulate a "PR#0" statement.)
+                      (FE93)
+                      SETVID   LDA #0       ;Designate slot 0.
+                      OUTPORT  STA A2L
+                      OUTPRT   LDX #<CSW    ;Set offset from start of zero page to OUTPUT hook.
+                               LDY #<COUT1
+                      IOPRT    LDA A2L
+                               AND #$0F
+                      (FE9F)   BEQ IOPRT1   ;ALWAYS.
+
+                      (FEA7)
+                      IOPRT1   LDA #>COUT1  ;(Hi byte of addr of KEYIN & COUT1 are equal.)
+                      IOPRT2   STY LOC0,X   ;Set CSW: COUT1.
+                               STA LOC1,X
+                      (FEAD)   RTS
+
+(BFCB)   LDA $C081    ;Write enable the RAM card.
+         LDA $C081    ;(Read motherboard / write card bank 2.)
+         LDA #0       ;Set the language identifying byte on the
+(BFD3)   STA BASICCLD ;card to $00 so if card is tested (during
+                      ;an FP command), the machine will be forced
+                      ;to use the motherboard version of FP.
+(BFD6)   JSR CONTCLOB ;Now clobber the 80-column card.
+
+                      * Clobber the 80-column card.
+                      (BA76)
+                      CONTCLOB LDA #$FF     ;Set the mode flag for card.
+                               STA $4FB     ;Scratch pad memory for slot 3 peripheral.
+                               STA $C00C    ;Turn off the alternate character set.
+                               STA $C00E
+                      (BA81)   JMP INIT     ;Simimulate a TEXT statement.
+                               ------------
+
+                      * Monitor ROM's Init routine.
+                      (FB2F)
+                      INIT     .
+                               .
+                      (See dis'mbly in APPLE II REFERENCE MANUAL.)
+                               .
+                               .
+                      - simulate a text statement.
+                        (Ie. set window to full screen text.)
+                               .
+                               .
+                               (RTS)
+
+(BFD9)   JMP BK2BOOT2 ;Return to original part of BOOT2.
+         ------------
+
+* Return back to original part of BOOT2.
+(B744)
+BK2BOOT2 JSR SETKBD   ;Select the keyboard.
+
+                      * Monitor ROM's routine to designate the
+                      * keyboard as the input device.
+                      * (Simulate a "IN#0" statement.)
+                      (FE89)
+                      SETKBD   LDA #0       ;Pretend using slot 0.
+                      INPORT   STA A2L
+                      INPRT    LDX #<KSW    ;Set offset from start of zero page to INPUT hook.
+                               LDY #<KEYIN
+                      (FE91)   BNE IOPRT    ;ALWAYS.
+
+                      (FE9B)
+                      IOPRT    LDA A2L
+                               AND #$0F
+                      (FE9F)   BEQ IOPRT1   ;ALWAYS.
+
+                      (FEA7)
+                      IOPRT1   LDA #>COUT1  ;(Hi byte of the addr of KEYIN & COUT1 are equal.)
+                      IOPRT2   STY LOC0,X   ;Set KSW: KEYIN.
+                               STA LOC1,X
+                      (FEAD)   RTS
+
+(B747)   JMP DOSCOLD  ;Jump into DOS's coldstart routine to build
+         ------------ ;the DOS buffers and the page-three vector
+         .            ;table and then run the "HELLO" program.
+         .            ;*************** N O T E *****************
+         .            ;* This instruction is a hacker's dream. *
+         .            ;* For instance, you can change the jump *
+         .            ;* to point to you own password or time- *
+         .            ;* bomb routine that you have deviously  *
+         .            ;* embedded in an unused section of DOS. *
+         .            ;*****************************************
+         .
+         .
+         .
+*---------------------*
+* SEE dis'mbly titled *
+*    "DOSCOLDSTART"   *
+*---------------------*
+         .
+         .
+         .
